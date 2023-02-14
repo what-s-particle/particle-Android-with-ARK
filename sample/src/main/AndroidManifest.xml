@@ -46,6 +46,7 @@
         <activity android:name=".permission.ui.PermissionActivity" />
         <activity android:name=".sound.ui.SoundActivity" />
         <activity android:name=".video.ui.VideoActivity" />
+        <activity android:name=".particle.ui.ParticleDemoActivity" />
     </application>
 
 </manifest>

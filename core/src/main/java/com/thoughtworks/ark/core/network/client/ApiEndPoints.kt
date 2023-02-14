@@ -7,6 +7,8 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.wire.WireConverterFactory
 
 class ApiEndPoints(private val context: Context, private val networkJson: Json) {
     fun <S> createService(clazz: Class<S>, baseUrl: String): S =
@@ -25,7 +27,8 @@ class ApiEndPoints(private val context: Context, private val networkJson: Json) 
     private fun createRetrofit(baseUrl: String, client: OkHttpClient) =
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(networkJson.asConverterFactory(jsonContentType))
+            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(WireConverterFactory.create())
             .client(client)
             .build()
 
