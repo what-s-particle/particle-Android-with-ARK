@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.sample.feeds.ui.FeedActivity
+import com.thoughtworks.ark.sample.particle.ui.ParticleDemoActivity
 import com.thoughtworks.ark.sample.permission.ui.PermissionActivity
 import com.thoughtworks.ark.sample.sound.ui.SoundActivity
 import com.thoughtworks.ark.sample.storage.ui.StorageActivity
@@ -102,6 +103,14 @@ fun MainScreen() {
                 context.openWebViewFromUrl("https://www.baidu.com", enableTitleBar = true)
             },
             text = { Text(text = "WebView Demo") }
+        )
+
+        AppFilledButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                context.startActivity(Intent(context, ParticleDemoActivity::class.java))
+            },
+            text = { Text(text = "Particle Demo") }
         )
 
         Footer()
