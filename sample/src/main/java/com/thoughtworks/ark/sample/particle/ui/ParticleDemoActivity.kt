@@ -1,11 +1,9 @@
 package com.thoughtworks.ark.sample.particle.ui
 
-import android.os.Bundle
+import com.thoughtworks.ark.particle.builder.ParticleBuilder
 import com.thoughtworks.ark.particle.ui.ParticleActivity
 
 class ParticleDemoActivity : ParticleActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    override val particleBuilder: ParticleBuilder
+        get() = ParticleBuilder().setBaseUrl("http://10.0.2.2:8000")
 }
