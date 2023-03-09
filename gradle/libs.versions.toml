@@ -41,6 +41,7 @@ androidx-test-core = "1.5.0"
 androidx-test-runner = "1.5.2"
 androidx-test-rules = "1.5.0"
 espresso-core = "3.5.1"
+androidx-navigation = "2.5.3"
 
 # router
 router = "42b1bcd3de"
@@ -123,6 +124,10 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 # router
 router = { module = "com.github.TW-Smart-CoE.ARK-Android-Router:router", version.ref = "router" }
 router-compiler = { module = "com.github.TW-Smart-CoE.ARK-Android-Router:compiler", version.ref = "router" }
+
+# navigation
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-navigation-testing = {module = "androidx.navigation:navigation-testing", version.ref = "androidx-navigation" }
 
 [bundles]
 compose = [

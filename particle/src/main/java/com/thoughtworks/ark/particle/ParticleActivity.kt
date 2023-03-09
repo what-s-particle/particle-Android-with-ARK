@@ -1,14 +1,11 @@
-package com.thoughtworks.ark.particle.ui
+package com.thoughtworks.ark.particle
 
+import ParticleNavGraph
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModelProvider
 import com.thoughtworks.ark.particle.builder.ParticleBuilder
 
@@ -29,11 +26,9 @@ abstract class ParticleActivity : ComponentActivity() {
 
         setContent {
             val treeState by viewModel.treeState.collectAsState()
-            var text by remember { mutableStateOf("Loading") }
             treeState?.let {
-                text = it.id
+                ParticleNavGraph(treeState = it, contract = viewModel.contract)
             }
-            Text(text = text)
         }
     }
 }

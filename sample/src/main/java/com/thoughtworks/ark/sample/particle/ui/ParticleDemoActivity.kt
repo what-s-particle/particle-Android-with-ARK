@@ -1,7 +1,7 @@
 package com.thoughtworks.ark.sample.particle.ui
 
 import com.thoughtworks.ark.particle.builder.ParticleBuilder
-import com.thoughtworks.ark.particle.ui.ParticleActivity
+import com.thoughtworks.ark.particle.ParticleActivity
 
 class ParticleDemoActivity : ParticleActivity() {
     override val particleBuilder: ParticleBuilder
