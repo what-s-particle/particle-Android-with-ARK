@@ -25,9 +25,9 @@ abstract class ParticleActivity : ComponentActivity() {
         viewModel.loadData()
 
         setContent {
-            val treeState by viewModel.treeState.collectAsState()
-            treeState?.let {
-                ParticleNavGraph(treeState = it, contract = viewModel.contract)
+            val navGraph by viewModel.content.collectAsState()
+            navGraph?.let {
+                ParticleNavGraph(navGraph = it, contract = viewModel.contract)
             }
         }
     }

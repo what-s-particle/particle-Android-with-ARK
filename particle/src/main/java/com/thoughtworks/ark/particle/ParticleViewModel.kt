@@ -3,7 +3,6 @@ package com.thoughtworks.ark.particle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.particle.ParticleContract
 import com.thoughtworks.ark.particle.data.ParticleRepository
 import com.thoughtworks.ark.particle.presenter.model.ParticleAction
 import com.yunlong.particle.proto.Particle
@@ -13,8 +12,8 @@ import kotlinx.coroutines.launch
 
 class ParticleViewModel(private val repository: ParticleRepository) : ViewModel() {
 
-    private val _treeState: MutableStateFlow<Particle?> = MutableStateFlow(null)
-    val treeState: StateFlow<Particle?> = _treeState
+    private val _content: MutableStateFlow<Particle?> = MutableStateFlow(null)
+    val content: StateFlow<Particle?> = _content
 
     val contract: ParticleContract by lazy {
         ParticleContract().createContract(
@@ -28,7 +27,7 @@ class ParticleViewModel(private val repository: ParticleRepository) : ViewModel(
             repository.getInitialView().collect {
                 when (it) {
                     is Result.Success -> {
-                        _treeState.emit(it.data)
+                        _content.emit(it.data)
                     }
                     else -> {
                         "Error"
