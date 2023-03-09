@@ -21,10 +21,10 @@ fun ParticleNavGraph(
     navController: NavHostController = rememberNavController(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-    treeState: Particle,
+    navGraph: Particle,
     contract: ParticleContract
 ) {
-    val startDestination = treeState.navigation?.let {
+    val startDestination = navGraph.navigation?.let {
         it.startDestination
     } ?: "particle"
 
@@ -38,10 +38,10 @@ fun ParticleNavGraph(
         modifier = modifier
     ) {
         composable("particle") {
-            ParticleScreen(navController, treeState, contract)
+            ParticleScreen(navController, navGraph, contract)
         }
 
-        treeState.navigation?.destinations?.forEach { destination ->
+        navGraph.navigation?.destinations?.forEach { destination ->
             destination.layout?.destination?.let {
                 if (it.route.isNotBlank())
                     composable(it.route) {

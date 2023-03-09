@@ -9,7 +9,7 @@ interface ParticleRepository {
     fun getParticle(): Flow<Result<Particle>>
     fun getActions(): Flow<Result<List<Action>>>
 
-    // TODO Get an initialization data (tree) should pass an Action, not a URL.
+    // TODO Get an initialization data (navGraph) should pass an Action, not a URL.
     //  And allows users to configure.
     fun getInitialView(): Flow<Result<Particle>>
 }

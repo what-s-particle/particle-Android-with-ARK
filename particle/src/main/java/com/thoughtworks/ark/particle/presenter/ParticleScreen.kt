@@ -9,8 +9,8 @@ import com.yunlong.particle.proto.Particle
 @Composable
 fun ParticleScreen(
     navController: NavHostController,
-    treeState: Particle,
+    destination: Particle,
     contract: ParticleContract
 ) {
-    Text(text = treeState.id)
+    Text(text = destination.id)
 }

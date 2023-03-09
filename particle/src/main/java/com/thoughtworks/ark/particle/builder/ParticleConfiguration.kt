@@ -10,7 +10,7 @@ class ParticleConfiguration {
 
     @JvmName("getInitialViewParticle")
     private fun getInitialView(): Particle {
-        //TODO Default view to load tree
+        //TODO Default view to load navGraph
 
         return Particle(id = "123")
     }
