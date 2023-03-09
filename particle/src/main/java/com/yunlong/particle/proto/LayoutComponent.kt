@@ -84,11 +84,18 @@ public class LayoutComponent(
     oneofName = "component",
   )
   public val navigation_view: NavigationViewComponent? = null,
+  @field:WireField(
+    tag = 8,
+    adapter = "com.yunlong.particle.proto.Destination#ADAPTER",
+    oneofName = "component",
+  )
+  public val destination: Destination? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<LayoutComponent, Nothing>(ADAPTER, unknownFields) {
   init {
-    require(countNonNull(row, column, box, lazy_column, lazy_row, tab_view, navigation_view) <= 1) {
-      "At most one of row, column, box, lazy_column, lazy_row, tab_view, navigation_view may be non-null"
+    require(countNonNull(row, column, box, lazy_column, lazy_row, tab_view, navigation_view,
+        destination) <= 1) {
+      "At most one of row, column, box, lazy_column, lazy_row, tab_view, navigation_view, destination may be non-null"
     }
   }
 
@@ -110,6 +117,7 @@ public class LayoutComponent(
     if (lazy_row != other.lazy_row) return false
     if (tab_view != other.tab_view) return false
     if (navigation_view != other.navigation_view) return false
+    if (destination != other.destination) return false
     return true
   }
 
@@ -124,6 +132,7 @@ public class LayoutComponent(
       result = result * 37 + (lazy_row?.hashCode() ?: 0)
       result = result * 37 + (tab_view?.hashCode() ?: 0)
       result = result * 37 + (navigation_view?.hashCode() ?: 0)
+      result = result * 37 + (destination?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -138,6 +147,7 @@ public class LayoutComponent(
     if (lazy_row != null) result += """lazy_row=$lazy_row"""
     if (tab_view != null) result += """tab_view=$tab_view"""
     if (navigation_view != null) result += """navigation_view=$navigation_view"""
+    if (destination != null) result += """destination=$destination"""
     return result.joinToString(prefix = "LayoutComponent{", separator = ", ", postfix = "}")
   }
 
@@ -149,9 +159,10 @@ public class LayoutComponent(
     lazy_row: LazyRowComponent? = this.lazy_row,
     tab_view: TabViewComponent? = this.tab_view,
     navigation_view: NavigationViewComponent? = this.navigation_view,
+    destination: Destination? = this.destination,
     unknownFields: ByteString = this.unknownFields,
   ): LayoutComponent = LayoutComponent(row, column, box, lazy_column, lazy_row, tab_view,
-      navigation_view, unknownFields)
+      navigation_view, destination, unknownFields)
 
   public companion object {
     @JvmField
@@ -172,6 +183,7 @@ public class LayoutComponent(
         size += LazyRowComponent.ADAPTER.encodedSizeWithTag(5, value.lazy_row)
         size += TabViewComponent.ADAPTER.encodedSizeWithTag(6, value.tab_view)
         size += NavigationViewComponent.ADAPTER.encodedSizeWithTag(7, value.navigation_view)
+        size += Destination.ADAPTER.encodedSizeWithTag(8, value.destination)
         return size
       }
 
@@ -183,11 +195,13 @@ public class LayoutComponent(
         LazyRowComponent.ADAPTER.encodeWithTag(writer, 5, value.lazy_row)
         TabViewComponent.ADAPTER.encodeWithTag(writer, 6, value.tab_view)
         NavigationViewComponent.ADAPTER.encodeWithTag(writer, 7, value.navigation_view)
+        Destination.ADAPTER.encodeWithTag(writer, 8, value.destination)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: LayoutComponent): Unit {
         writer.writeBytes(value.unknownFields)
+        Destination.ADAPTER.encodeWithTag(writer, 8, value.destination)
         NavigationViewComponent.ADAPTER.encodeWithTag(writer, 7, value.navigation_view)
         TabViewComponent.ADAPTER.encodeWithTag(writer, 6, value.tab_view)
         LazyRowComponent.ADAPTER.encodeWithTag(writer, 5, value.lazy_row)
@@ -205,6 +219,7 @@ public class LayoutComponent(
         var lazy_row: LazyRowComponent? = null
         var tab_view: TabViewComponent? = null
         var navigation_view: NavigationViewComponent? = null
+        var destination: Destination? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> row = RowComponent.ADAPTER.decode(reader)
@@ -214,6 +229,7 @@ public class LayoutComponent(
             5 -> lazy_row = LazyRowComponent.ADAPTER.decode(reader)
             6 -> tab_view = TabViewComponent.ADAPTER.decode(reader)
             7 -> navigation_view = NavigationViewComponent.ADAPTER.decode(reader)
+            8 -> destination = Destination.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
@@ -225,6 +241,7 @@ public class LayoutComponent(
           lazy_row = lazy_row,
           tab_view = tab_view,
           navigation_view = navigation_view,
+          destination = destination,
           unknownFields = unknownFields
         )
       }
@@ -237,6 +254,7 @@ public class LayoutComponent(
         lazy_row = value.lazy_row?.let(LazyRowComponent.ADAPTER::redact),
         tab_view = value.tab_view?.let(TabViewComponent.ADAPTER::redact),
         navigation_view = value.navigation_view?.let(NavigationViewComponent.ADAPTER::redact),
+        destination = value.destination?.let(Destination.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

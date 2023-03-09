@@ -3,7 +3,7 @@ package com.thoughtworks.ark.particle.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.thoughtworks.ark.particle.data.ParticleRepository
-import com.thoughtworks.ark.particle.ui.ParticleViewModel
+import com.thoughtworks.ark.particle.ParticleViewModel
 
 class ParticleViewModelProvider(
     private val repository: ParticleRepository,

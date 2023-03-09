@@ -1,11 +1,11 @@
 import com.thoughtworks.ark.androidLibrary
-        import com.thoughtworks.ark.enableCompose
+import com.thoughtworks.ark.enableCompose
 
-        @Suppress("DSL_SCOPE_VIOLATION")
-        plugins {
-            alias(libs.plugins.library)
-            alias(libs.plugins.kotlin)
-        }
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
+    alias(libs.plugins.library)
+    alias(libs.plugins.kotlin)
+}
 
 apply(from = "../config/jacoco/modules.kts")
 
@@ -22,6 +22,6 @@ dependencies {
     implementation(libs.router)
     implementation(libs.bundles.retrofit)
     implementation(libs.wire)
-    implementation(libs.wire)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit4)
 }
