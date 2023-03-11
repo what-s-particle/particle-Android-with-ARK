@@ -49,80 +49,72 @@ public class Action(
   @field:WireField(
     tag = 2,
     adapter = "com.yunlong.particle.proto.NavigateToAction#ADAPTER",
-    jsonName = "navigateTo",
     oneofName = "action",
   )
-  public val navigate_to: NavigateToAction? = null,
+  public val navigateTo: NavigateToAction? = null,
   /**
    * Action to open previous screen
    */
   @field:WireField(
     tag = 3,
     adapter = "com.yunlong.particle.proto.NavigateBackAction#ADAPTER",
-    jsonName = "navigateBack",
     oneofName = "action",
   )
-  public val navigate_back: NavigateBackAction? = null,
+  public val navigateBack: NavigateBackAction? = null,
   /**
    * Action to show a dialog
    */
   @field:WireField(
     tag = 4,
     adapter = "com.yunlong.particle.proto.ShowDialogAction#ADAPTER",
-    jsonName = "showDialog",
     oneofName = "action",
   )
-  public val show_dialog: ShowDialogAction? = null,
+  public val showDialog: ShowDialogAction? = null,
   /**
    * Action to show a menu
    */
   @field:WireField(
     tag = 5,
     adapter = "com.yunlong.particle.proto.ShowMenuAction#ADAPTER",
-    jsonName = "showMenu",
     oneofName = "action",
   )
-  public val show_menu: ShowMenuAction? = null,
+  public val showMenu: ShowMenuAction? = null,
   /**
    * Action to update the UI modifier
    */
   @field:WireField(
     tag = 6,
     adapter = "com.yunlong.particle.proto.UpdateModifierAction#ADAPTER",
-    jsonName = "updateModifier",
     oneofName = "action",
   )
-  public val update_modifier: UpdateModifierAction? = null,
+  public val updateModifier: UpdateModifierAction? = null,
   /**
    * Action to store data
    */
   @field:WireField(
     tag = 7,
     adapter = "com.yunlong.particle.proto.StoreDataAction#ADAPTER",
-    jsonName = "storeData",
     oneofName = "action",
   )
-  public val store_data: StoreDataAction? = null,
+  public val storeData: StoreDataAction? = null,
   /**
    * Action to send an HTTP request
    */
   @field:WireField(
     tag = 8,
     adapter = "com.yunlong.particle.proto.SendHttpRequestAction#ADAPTER",
-    jsonName = "sendHttpRequest",
     oneofName = "action",
   )
-  public val send_http_request: SendHttpRequestAction? = null,
+  public val sendHttpRequest: SendHttpRequestAction? = null,
   /**
    * Action to open the browser, mailbox, phone, camera, etc.
    */
   @field:WireField(
     tag = 9,
     adapter = "com.yunlong.particle.proto.OpenExternalAppAction#ADAPTER",
-    jsonName = "openExternalApp",
     oneofName = "action",
   )
-  public val open_external_app: OpenExternalAppAction? = null,
+  public val openExternalApp: OpenExternalAppAction? = null,
   @field:WireField(
     tag = 10,
     adapter = "com.yunlong.particle.proto.ConditionAction#ADAPTER",
@@ -132,17 +124,15 @@ public class Action(
   @field:WireField(
     tag = 11,
     adapter = "com.yunlong.particle.proto.RetrieveDataAction#ADAPTER",
-    jsonName = "retrieveData",
     oneofName = "action",
   )
-  public val retrieve_data: RetrieveDataAction? = null,
+  public val retrieveData: RetrieveDataAction? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<Action, Nothing>(ADAPTER, unknownFields) {
   init {
-    require(countNonNull(custom, navigate_to, navigate_back, show_dialog, show_menu,
-        update_modifier, store_data, send_http_request, open_external_app, condition,
-        retrieve_data) <= 1) {
-      "At most one of custom, navigate_to, navigate_back, show_dialog, show_menu, update_modifier, store_data, send_http_request, open_external_app, condition, retrieve_data may be non-null"
+    require(countNonNull(custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier,
+        storeData, sendHttpRequest, openExternalApp, condition, retrieveData) <= 1) {
+      "At most one of custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier, storeData, sendHttpRequest, openExternalApp, condition, retrieveData may be non-null"
     }
   }
 
@@ -158,16 +148,16 @@ public class Action(
     if (other !is Action) return false
     if (unknownFields != other.unknownFields) return false
     if (custom != other.custom) return false
-    if (navigate_to != other.navigate_to) return false
-    if (navigate_back != other.navigate_back) return false
-    if (show_dialog != other.show_dialog) return false
-    if (show_menu != other.show_menu) return false
-    if (update_modifier != other.update_modifier) return false
-    if (store_data != other.store_data) return false
-    if (send_http_request != other.send_http_request) return false
-    if (open_external_app != other.open_external_app) return false
+    if (navigateTo != other.navigateTo) return false
+    if (navigateBack != other.navigateBack) return false
+    if (showDialog != other.showDialog) return false
+    if (showMenu != other.showMenu) return false
+    if (updateModifier != other.updateModifier) return false
+    if (storeData != other.storeData) return false
+    if (sendHttpRequest != other.sendHttpRequest) return false
+    if (openExternalApp != other.openExternalApp) return false
     if (condition != other.condition) return false
-    if (retrieve_data != other.retrieve_data) return false
+    if (retrieveData != other.retrieveData) return false
     return true
   }
 
@@ -176,16 +166,16 @@ public class Action(
     if (result == 0) {
       result = unknownFields.hashCode()
       result = result * 37 + (custom?.hashCode() ?: 0)
-      result = result * 37 + (navigate_to?.hashCode() ?: 0)
-      result = result * 37 + (navigate_back?.hashCode() ?: 0)
-      result = result * 37 + (show_dialog?.hashCode() ?: 0)
-      result = result * 37 + (show_menu?.hashCode() ?: 0)
-      result = result * 37 + (update_modifier?.hashCode() ?: 0)
-      result = result * 37 + (store_data?.hashCode() ?: 0)
-      result = result * 37 + (send_http_request?.hashCode() ?: 0)
-      result = result * 37 + (open_external_app?.hashCode() ?: 0)
+      result = result * 37 + (navigateTo?.hashCode() ?: 0)
+      result = result * 37 + (navigateBack?.hashCode() ?: 0)
+      result = result * 37 + (showDialog?.hashCode() ?: 0)
+      result = result * 37 + (showMenu?.hashCode() ?: 0)
+      result = result * 37 + (updateModifier?.hashCode() ?: 0)
+      result = result * 37 + (storeData?.hashCode() ?: 0)
+      result = result * 37 + (sendHttpRequest?.hashCode() ?: 0)
+      result = result * 37 + (openExternalApp?.hashCode() ?: 0)
       result = result * 37 + (condition?.hashCode() ?: 0)
-      result = result * 37 + (retrieve_data?.hashCode() ?: 0)
+      result = result * 37 + (retrieveData?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -194,34 +184,34 @@ public class Action(
   public override fun toString(): String {
     val result = mutableListOf<String>()
     if (custom != null) result += """custom=$custom"""
-    if (navigate_to != null) result += """navigate_to=$navigate_to"""
-    if (navigate_back != null) result += """navigate_back=$navigate_back"""
-    if (show_dialog != null) result += """show_dialog=$show_dialog"""
-    if (show_menu != null) result += """show_menu=$show_menu"""
-    if (update_modifier != null) result += """update_modifier=$update_modifier"""
-    if (store_data != null) result += """store_data=$store_data"""
-    if (send_http_request != null) result += """send_http_request=$send_http_request"""
-    if (open_external_app != null) result += """open_external_app=$open_external_app"""
+    if (navigateTo != null) result += """navigateTo=$navigateTo"""
+    if (navigateBack != null) result += """navigateBack=$navigateBack"""
+    if (showDialog != null) result += """showDialog=$showDialog"""
+    if (showMenu != null) result += """showMenu=$showMenu"""
+    if (updateModifier != null) result += """updateModifier=$updateModifier"""
+    if (storeData != null) result += """storeData=$storeData"""
+    if (sendHttpRequest != null) result += """sendHttpRequest=$sendHttpRequest"""
+    if (openExternalApp != null) result += """openExternalApp=$openExternalApp"""
     if (condition != null) result += """condition=$condition"""
-    if (retrieve_data != null) result += """retrieve_data=$retrieve_data"""
+    if (retrieveData != null) result += """retrieveData=$retrieveData"""
     return result.joinToString(prefix = "Action{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
     custom: CustomAction? = this.custom,
-    navigate_to: NavigateToAction? = this.navigate_to,
-    navigate_back: NavigateBackAction? = this.navigate_back,
-    show_dialog: ShowDialogAction? = this.show_dialog,
-    show_menu: ShowMenuAction? = this.show_menu,
-    update_modifier: UpdateModifierAction? = this.update_modifier,
-    store_data: StoreDataAction? = this.store_data,
-    send_http_request: SendHttpRequestAction? = this.send_http_request,
-    open_external_app: OpenExternalAppAction? = this.open_external_app,
+    navigateTo: NavigateToAction? = this.navigateTo,
+    navigateBack: NavigateBackAction? = this.navigateBack,
+    showDialog: ShowDialogAction? = this.showDialog,
+    showMenu: ShowMenuAction? = this.showMenu,
+    updateModifier: UpdateModifierAction? = this.updateModifier,
+    storeData: StoreDataAction? = this.storeData,
+    sendHttpRequest: SendHttpRequestAction? = this.sendHttpRequest,
+    openExternalApp: OpenExternalAppAction? = this.openExternalApp,
     condition: ConditionAction? = this.condition,
-    retrieve_data: RetrieveDataAction? = this.retrieve_data,
+    retrieveData: RetrieveDataAction? = this.retrieveData,
     unknownFields: ByteString = this.unknownFields,
-  ): Action = Action(custom, navigate_to, navigate_back, show_dialog, show_menu, update_modifier,
-      store_data, send_http_request, open_external_app, condition, retrieve_data, unknownFields)
+  ): Action = Action(custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier,
+      storeData, sendHttpRequest, openExternalApp, condition, retrieveData, unknownFields)
 
   public companion object {
     @JvmField
@@ -236,105 +226,105 @@ public class Action(
       public override fun encodedSize(`value`: Action): Int {
         var size = value.unknownFields.size
         size += CustomAction.ADAPTER.encodedSizeWithTag(1, value.custom)
-        size += NavigateToAction.ADAPTER.encodedSizeWithTag(2, value.navigate_to)
-        size += NavigateBackAction.ADAPTER.encodedSizeWithTag(3, value.navigate_back)
-        size += ShowDialogAction.ADAPTER.encodedSizeWithTag(4, value.show_dialog)
-        size += ShowMenuAction.ADAPTER.encodedSizeWithTag(5, value.show_menu)
-        size += UpdateModifierAction.ADAPTER.encodedSizeWithTag(6, value.update_modifier)
-        size += StoreDataAction.ADAPTER.encodedSizeWithTag(7, value.store_data)
-        size += SendHttpRequestAction.ADAPTER.encodedSizeWithTag(8, value.send_http_request)
-        size += OpenExternalAppAction.ADAPTER.encodedSizeWithTag(9, value.open_external_app)
+        size += NavigateToAction.ADAPTER.encodedSizeWithTag(2, value.navigateTo)
+        size += NavigateBackAction.ADAPTER.encodedSizeWithTag(3, value.navigateBack)
+        size += ShowDialogAction.ADAPTER.encodedSizeWithTag(4, value.showDialog)
+        size += ShowMenuAction.ADAPTER.encodedSizeWithTag(5, value.showMenu)
+        size += UpdateModifierAction.ADAPTER.encodedSizeWithTag(6, value.updateModifier)
+        size += StoreDataAction.ADAPTER.encodedSizeWithTag(7, value.storeData)
+        size += SendHttpRequestAction.ADAPTER.encodedSizeWithTag(8, value.sendHttpRequest)
+        size += OpenExternalAppAction.ADAPTER.encodedSizeWithTag(9, value.openExternalApp)
         size += ConditionAction.ADAPTER.encodedSizeWithTag(10, value.condition)
-        size += RetrieveDataAction.ADAPTER.encodedSizeWithTag(11, value.retrieve_data)
+        size += RetrieveDataAction.ADAPTER.encodedSizeWithTag(11, value.retrieveData)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: Action): Unit {
         CustomAction.ADAPTER.encodeWithTag(writer, 1, value.custom)
-        NavigateToAction.ADAPTER.encodeWithTag(writer, 2, value.navigate_to)
-        NavigateBackAction.ADAPTER.encodeWithTag(writer, 3, value.navigate_back)
-        ShowDialogAction.ADAPTER.encodeWithTag(writer, 4, value.show_dialog)
-        ShowMenuAction.ADAPTER.encodeWithTag(writer, 5, value.show_menu)
-        UpdateModifierAction.ADAPTER.encodeWithTag(writer, 6, value.update_modifier)
-        StoreDataAction.ADAPTER.encodeWithTag(writer, 7, value.store_data)
-        SendHttpRequestAction.ADAPTER.encodeWithTag(writer, 8, value.send_http_request)
-        OpenExternalAppAction.ADAPTER.encodeWithTag(writer, 9, value.open_external_app)
+        NavigateToAction.ADAPTER.encodeWithTag(writer, 2, value.navigateTo)
+        NavigateBackAction.ADAPTER.encodeWithTag(writer, 3, value.navigateBack)
+        ShowDialogAction.ADAPTER.encodeWithTag(writer, 4, value.showDialog)
+        ShowMenuAction.ADAPTER.encodeWithTag(writer, 5, value.showMenu)
+        UpdateModifierAction.ADAPTER.encodeWithTag(writer, 6, value.updateModifier)
+        StoreDataAction.ADAPTER.encodeWithTag(writer, 7, value.storeData)
+        SendHttpRequestAction.ADAPTER.encodeWithTag(writer, 8, value.sendHttpRequest)
+        OpenExternalAppAction.ADAPTER.encodeWithTag(writer, 9, value.openExternalApp)
         ConditionAction.ADAPTER.encodeWithTag(writer, 10, value.condition)
-        RetrieveDataAction.ADAPTER.encodeWithTag(writer, 11, value.retrieve_data)
+        RetrieveDataAction.ADAPTER.encodeWithTag(writer, 11, value.retrieveData)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: Action): Unit {
         writer.writeBytes(value.unknownFields)
-        RetrieveDataAction.ADAPTER.encodeWithTag(writer, 11, value.retrieve_data)
+        RetrieveDataAction.ADAPTER.encodeWithTag(writer, 11, value.retrieveData)
         ConditionAction.ADAPTER.encodeWithTag(writer, 10, value.condition)
-        OpenExternalAppAction.ADAPTER.encodeWithTag(writer, 9, value.open_external_app)
-        SendHttpRequestAction.ADAPTER.encodeWithTag(writer, 8, value.send_http_request)
-        StoreDataAction.ADAPTER.encodeWithTag(writer, 7, value.store_data)
-        UpdateModifierAction.ADAPTER.encodeWithTag(writer, 6, value.update_modifier)
-        ShowMenuAction.ADAPTER.encodeWithTag(writer, 5, value.show_menu)
-        ShowDialogAction.ADAPTER.encodeWithTag(writer, 4, value.show_dialog)
-        NavigateBackAction.ADAPTER.encodeWithTag(writer, 3, value.navigate_back)
-        NavigateToAction.ADAPTER.encodeWithTag(writer, 2, value.navigate_to)
+        OpenExternalAppAction.ADAPTER.encodeWithTag(writer, 9, value.openExternalApp)
+        SendHttpRequestAction.ADAPTER.encodeWithTag(writer, 8, value.sendHttpRequest)
+        StoreDataAction.ADAPTER.encodeWithTag(writer, 7, value.storeData)
+        UpdateModifierAction.ADAPTER.encodeWithTag(writer, 6, value.updateModifier)
+        ShowMenuAction.ADAPTER.encodeWithTag(writer, 5, value.showMenu)
+        ShowDialogAction.ADAPTER.encodeWithTag(writer, 4, value.showDialog)
+        NavigateBackAction.ADAPTER.encodeWithTag(writer, 3, value.navigateBack)
+        NavigateToAction.ADAPTER.encodeWithTag(writer, 2, value.navigateTo)
         CustomAction.ADAPTER.encodeWithTag(writer, 1, value.custom)
       }
 
       public override fun decode(reader: ProtoReader): Action {
         var custom: CustomAction? = null
-        var navigate_to: NavigateToAction? = null
-        var navigate_back: NavigateBackAction? = null
-        var show_dialog: ShowDialogAction? = null
-        var show_menu: ShowMenuAction? = null
-        var update_modifier: UpdateModifierAction? = null
-        var store_data: StoreDataAction? = null
-        var send_http_request: SendHttpRequestAction? = null
-        var open_external_app: OpenExternalAppAction? = null
+        var navigateTo: NavigateToAction? = null
+        var navigateBack: NavigateBackAction? = null
+        var showDialog: ShowDialogAction? = null
+        var showMenu: ShowMenuAction? = null
+        var updateModifier: UpdateModifierAction? = null
+        var storeData: StoreDataAction? = null
+        var sendHttpRequest: SendHttpRequestAction? = null
+        var openExternalApp: OpenExternalAppAction? = null
         var condition: ConditionAction? = null
-        var retrieve_data: RetrieveDataAction? = null
+        var retrieveData: RetrieveDataAction? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> custom = CustomAction.ADAPTER.decode(reader)
-            2 -> navigate_to = NavigateToAction.ADAPTER.decode(reader)
-            3 -> navigate_back = NavigateBackAction.ADAPTER.decode(reader)
-            4 -> show_dialog = ShowDialogAction.ADAPTER.decode(reader)
-            5 -> show_menu = ShowMenuAction.ADAPTER.decode(reader)
-            6 -> update_modifier = UpdateModifierAction.ADAPTER.decode(reader)
-            7 -> store_data = StoreDataAction.ADAPTER.decode(reader)
-            8 -> send_http_request = SendHttpRequestAction.ADAPTER.decode(reader)
-            9 -> open_external_app = OpenExternalAppAction.ADAPTER.decode(reader)
+            2 -> navigateTo = NavigateToAction.ADAPTER.decode(reader)
+            3 -> navigateBack = NavigateBackAction.ADAPTER.decode(reader)
+            4 -> showDialog = ShowDialogAction.ADAPTER.decode(reader)
+            5 -> showMenu = ShowMenuAction.ADAPTER.decode(reader)
+            6 -> updateModifier = UpdateModifierAction.ADAPTER.decode(reader)
+            7 -> storeData = StoreDataAction.ADAPTER.decode(reader)
+            8 -> sendHttpRequest = SendHttpRequestAction.ADAPTER.decode(reader)
+            9 -> openExternalApp = OpenExternalAppAction.ADAPTER.decode(reader)
             10 -> condition = ConditionAction.ADAPTER.decode(reader)
-            11 -> retrieve_data = RetrieveDataAction.ADAPTER.decode(reader)
+            11 -> retrieveData = RetrieveDataAction.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
         return Action(
           custom = custom,
-          navigate_to = navigate_to,
-          navigate_back = navigate_back,
-          show_dialog = show_dialog,
-          show_menu = show_menu,
-          update_modifier = update_modifier,
-          store_data = store_data,
-          send_http_request = send_http_request,
-          open_external_app = open_external_app,
+          navigateTo = navigateTo,
+          navigateBack = navigateBack,
+          showDialog = showDialog,
+          showMenu = showMenu,
+          updateModifier = updateModifier,
+          storeData = storeData,
+          sendHttpRequest = sendHttpRequest,
+          openExternalApp = openExternalApp,
           condition = condition,
-          retrieve_data = retrieve_data,
+          retrieveData = retrieveData,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: Action): Action = value.copy(
         custom = value.custom?.let(CustomAction.ADAPTER::redact),
-        navigate_to = value.navigate_to?.let(NavigateToAction.ADAPTER::redact),
-        navigate_back = value.navigate_back?.let(NavigateBackAction.ADAPTER::redact),
-        show_dialog = value.show_dialog?.let(ShowDialogAction.ADAPTER::redact),
-        show_menu = value.show_menu?.let(ShowMenuAction.ADAPTER::redact),
-        update_modifier = value.update_modifier?.let(UpdateModifierAction.ADAPTER::redact),
-        store_data = value.store_data?.let(StoreDataAction.ADAPTER::redact),
-        send_http_request = value.send_http_request?.let(SendHttpRequestAction.ADAPTER::redact),
-        open_external_app = value.open_external_app?.let(OpenExternalAppAction.ADAPTER::redact),
+        navigateTo = value.navigateTo?.let(NavigateToAction.ADAPTER::redact),
+        navigateBack = value.navigateBack?.let(NavigateBackAction.ADAPTER::redact),
+        showDialog = value.showDialog?.let(ShowDialogAction.ADAPTER::redact),
+        showMenu = value.showMenu?.let(ShowMenuAction.ADAPTER::redact),
+        updateModifier = value.updateModifier?.let(UpdateModifierAction.ADAPTER::redact),
+        storeData = value.storeData?.let(StoreDataAction.ADAPTER::redact),
+        sendHttpRequest = value.sendHttpRequest?.let(SendHttpRequestAction.ADAPTER::redact),
+        openExternalApp = value.openExternalApp?.let(OpenExternalAppAction.ADAPTER::redact),
         condition = value.condition?.let(ConditionAction.ADAPTER::redact),
-        retrieve_data = value.retrieve_data?.let(RetrieveDataAction.ADAPTER::redact),
+        retrieveData = value.retrieveData?.let(RetrieveDataAction.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

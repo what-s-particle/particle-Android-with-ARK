@@ -42,18 +42,16 @@ public class TopAppBarComponent(
   @field:WireField(
     tag = 2,
     adapter = "com.yunlong.particle.proto.Particle#ADAPTER",
-    jsonName = "navigationIcon",
   )
-  public val navigation_icon: Particle? = null,
+  public val navigationIcon: Particle? = null,
   /**
    * Action icon to display for the item.
    */
   @field:WireField(
     tag = 3,
     adapter = "com.yunlong.particle.proto.Particle#ADAPTER",
-    jsonName = "actionIcon",
   )
-  public val action_icon: Particle? = null,
+  public val actionIcon: Particle? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<TopAppBarComponent, Nothing>(ADAPTER, unknownFields) {
   @Deprecated(
@@ -68,8 +66,8 @@ public class TopAppBarComponent(
     if (other !is TopAppBarComponent) return false
     if (unknownFields != other.unknownFields) return false
     if (title != other.title) return false
-    if (navigation_icon != other.navigation_icon) return false
-    if (action_icon != other.action_icon) return false
+    if (navigationIcon != other.navigationIcon) return false
+    if (actionIcon != other.actionIcon) return false
     return true
   }
 
@@ -78,8 +76,8 @@ public class TopAppBarComponent(
     if (result == 0) {
       result = unknownFields.hashCode()
       result = result * 37 + (title?.hashCode() ?: 0)
-      result = result * 37 + (navigation_icon?.hashCode() ?: 0)
-      result = result * 37 + (action_icon?.hashCode() ?: 0)
+      result = result * 37 + (navigationIcon?.hashCode() ?: 0)
+      result = result * 37 + (actionIcon?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -88,17 +86,17 @@ public class TopAppBarComponent(
   public override fun toString(): String {
     val result = mutableListOf<String>()
     if (title != null) result += """title=$title"""
-    if (navigation_icon != null) result += """navigation_icon=$navigation_icon"""
-    if (action_icon != null) result += """action_icon=$action_icon"""
+    if (navigationIcon != null) result += """navigationIcon=$navigationIcon"""
+    if (actionIcon != null) result += """actionIcon=$actionIcon"""
     return result.joinToString(prefix = "TopAppBarComponent{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
     title: Particle? = this.title,
-    navigation_icon: Particle? = this.navigation_icon,
-    action_icon: Particle? = this.action_icon,
+    navigationIcon: Particle? = this.navigationIcon,
+    actionIcon: Particle? = this.actionIcon,
     unknownFields: ByteString = this.unknownFields,
-  ): TopAppBarComponent = TopAppBarComponent(title, navigation_icon, action_icon, unknownFields)
+  ): TopAppBarComponent = TopAppBarComponent(title, navigationIcon, actionIcon, unknownFields)
 
   public companion object {
     @JvmField
@@ -114,49 +112,49 @@ public class TopAppBarComponent(
       public override fun encodedSize(`value`: TopAppBarComponent): Int {
         var size = value.unknownFields.size
         size += Particle.ADAPTER.encodedSizeWithTag(1, value.title)
-        size += Particle.ADAPTER.encodedSizeWithTag(2, value.navigation_icon)
-        size += Particle.ADAPTER.encodedSizeWithTag(3, value.action_icon)
+        size += Particle.ADAPTER.encodedSizeWithTag(2, value.navigationIcon)
+        size += Particle.ADAPTER.encodedSizeWithTag(3, value.actionIcon)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: TopAppBarComponent): Unit {
         Particle.ADAPTER.encodeWithTag(writer, 1, value.title)
-        Particle.ADAPTER.encodeWithTag(writer, 2, value.navigation_icon)
-        Particle.ADAPTER.encodeWithTag(writer, 3, value.action_icon)
+        Particle.ADAPTER.encodeWithTag(writer, 2, value.navigationIcon)
+        Particle.ADAPTER.encodeWithTag(writer, 3, value.actionIcon)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: TopAppBarComponent): Unit {
         writer.writeBytes(value.unknownFields)
-        Particle.ADAPTER.encodeWithTag(writer, 3, value.action_icon)
-        Particle.ADAPTER.encodeWithTag(writer, 2, value.navigation_icon)
+        Particle.ADAPTER.encodeWithTag(writer, 3, value.actionIcon)
+        Particle.ADAPTER.encodeWithTag(writer, 2, value.navigationIcon)
         Particle.ADAPTER.encodeWithTag(writer, 1, value.title)
       }
 
       public override fun decode(reader: ProtoReader): TopAppBarComponent {
         var title: Particle? = null
-        var navigation_icon: Particle? = null
-        var action_icon: Particle? = null
+        var navigationIcon: Particle? = null
+        var actionIcon: Particle? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> title = Particle.ADAPTER.decode(reader)
-            2 -> navigation_icon = Particle.ADAPTER.decode(reader)
-            3 -> action_icon = Particle.ADAPTER.decode(reader)
+            2 -> navigationIcon = Particle.ADAPTER.decode(reader)
+            3 -> actionIcon = Particle.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
         return TopAppBarComponent(
           title = title,
-          navigation_icon = navigation_icon,
-          action_icon = action_icon,
+          navigationIcon = navigationIcon,
+          actionIcon = actionIcon,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: TopAppBarComponent): TopAppBarComponent = value.copy(
         title = value.title?.let(Particle.ADAPTER::redact),
-        navigation_icon = value.navigation_icon?.let(Particle.ADAPTER::redact),
-        action_icon = value.action_icon?.let(Particle.ADAPTER::redact),
+        navigationIcon = value.navigationIcon?.let(Particle.ADAPTER::redact),
+        actionIcon = value.actionIcon?.let(Particle.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

@@ -59,20 +59,18 @@ public class ElementComponent(
   @field:WireField(
     tag = 4,
     adapter = "com.yunlong.particle.proto.TextFieldComponent#ADAPTER",
-    jsonName = "textField",
     oneofName = "element",
   )
-  public val text_field: TextFieldComponent? = null,
+  public val textField: TextFieldComponent? = null,
   /**
    * Used to create a multiline text input field
    */
   @field:WireField(
     tag = 5,
     adapter = "com.yunlong.particle.proto.TextEditorComponent#ADAPTER",
-    jsonName = "textEditor",
     oneofName = "element",
   )
-  public val text_editor: TextEditorComponent? = null,
+  public val textEditor: TextEditorComponent? = null,
   /**
    * Used to create a slider
    */
@@ -106,10 +104,9 @@ public class ElementComponent(
   @field:WireField(
     tag = 9,
     adapter = "com.yunlong.particle.proto.RadioButtonComponent#ADAPTER",
-    jsonName = "radioButton",
     oneofName = "element",
   )
-  public val radio_button: RadioButtonComponent? = null,
+  public val radioButton: RadioButtonComponent? = null,
   /**
    * Used to create a dropdown list
    */
@@ -125,20 +122,18 @@ public class ElementComponent(
   @field:WireField(
     tag = 11,
     adapter = "com.yunlong.particle.proto.TopAppBarComponent#ADAPTER",
-    jsonName = "topAppBar",
     oneofName = "element",
   )
-  public val top_app_bar: TopAppBarComponent? = null,
+  public val topAppBar: TopAppBarComponent? = null,
   /**
-   * Used to create a navigation bar
+   * Used to create a bottom bar
    */
   @field:WireField(
     tag = 12,
-    adapter = "com.yunlong.particle.proto.NavigationBarItemComponent#ADAPTER",
-    jsonName = "navigationViewItem",
+    adapter = "com.yunlong.particle.proto.BottomBarItemComponent#ADAPTER",
     oneofName = "element",
   )
-  public val navigation_view_item: NavigationBarItemComponent? = null,
+  public val bottomBarItem: BottomBarItemComponent? = null,
   /**
    * Used to create an alert dialog
    */
@@ -154,16 +149,15 @@ public class ElementComponent(
   @field:WireField(
     tag = 14,
     adapter = "com.yunlong.particle.proto.ActionSheetComponent#ADAPTER",
-    jsonName = "actionSheet",
     oneofName = "element",
   )
-  public val action_sheet: ActionSheetComponent? = null,
+  public val actionSheet: ActionSheetComponent? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<ElementComponent, Nothing>(ADAPTER, unknownFields) {
   init {
-    require(countNonNull(button, label, image, text_field, text_editor, slider, toggle, checkbox,
-        radio_button, picker, top_app_bar, navigation_view_item, alert, action_sheet) <= 1) {
-      "At most one of button, label, image, text_field, text_editor, slider, toggle, checkbox, radio_button, picker, top_app_bar, navigation_view_item, alert, action_sheet may be non-null"
+    require(countNonNull(button, label, image, textField, textEditor, slider, toggle, checkbox,
+        radioButton, picker, topAppBar, bottomBarItem, alert, actionSheet) <= 1) {
+      "At most one of button, label, image, textField, textEditor, slider, toggle, checkbox, radioButton, picker, topAppBar, bottomBarItem, alert, actionSheet may be non-null"
     }
   }
 
@@ -181,17 +175,17 @@ public class ElementComponent(
     if (button != other.button) return false
     if (label != other.label) return false
     if (image != other.image) return false
-    if (text_field != other.text_field) return false
-    if (text_editor != other.text_editor) return false
+    if (textField != other.textField) return false
+    if (textEditor != other.textEditor) return false
     if (slider != other.slider) return false
     if (toggle != other.toggle) return false
     if (checkbox != other.checkbox) return false
-    if (radio_button != other.radio_button) return false
+    if (radioButton != other.radioButton) return false
     if (picker != other.picker) return false
-    if (top_app_bar != other.top_app_bar) return false
-    if (navigation_view_item != other.navigation_view_item) return false
+    if (topAppBar != other.topAppBar) return false
+    if (bottomBarItem != other.bottomBarItem) return false
     if (alert != other.alert) return false
-    if (action_sheet != other.action_sheet) return false
+    if (actionSheet != other.actionSheet) return false
     return true
   }
 
@@ -202,17 +196,17 @@ public class ElementComponent(
       result = result * 37 + (button?.hashCode() ?: 0)
       result = result * 37 + (label?.hashCode() ?: 0)
       result = result * 37 + (image?.hashCode() ?: 0)
-      result = result * 37 + (text_field?.hashCode() ?: 0)
-      result = result * 37 + (text_editor?.hashCode() ?: 0)
+      result = result * 37 + (textField?.hashCode() ?: 0)
+      result = result * 37 + (textEditor?.hashCode() ?: 0)
       result = result * 37 + (slider?.hashCode() ?: 0)
       result = result * 37 + (toggle?.hashCode() ?: 0)
       result = result * 37 + (checkbox?.hashCode() ?: 0)
-      result = result * 37 + (radio_button?.hashCode() ?: 0)
+      result = result * 37 + (radioButton?.hashCode() ?: 0)
       result = result * 37 + (picker?.hashCode() ?: 0)
-      result = result * 37 + (top_app_bar?.hashCode() ?: 0)
-      result = result * 37 + (navigation_view_item?.hashCode() ?: 0)
+      result = result * 37 + (topAppBar?.hashCode() ?: 0)
+      result = result * 37 + (bottomBarItem?.hashCode() ?: 0)
       result = result * 37 + (alert?.hashCode() ?: 0)
-      result = result * 37 + (action_sheet?.hashCode() ?: 0)
+      result = result * 37 + (actionSheet?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -223,17 +217,17 @@ public class ElementComponent(
     if (button != null) result += """button=$button"""
     if (label != null) result += """label=$label"""
     if (image != null) result += """image=$image"""
-    if (text_field != null) result += """text_field=$text_field"""
-    if (text_editor != null) result += """text_editor=$text_editor"""
+    if (textField != null) result += """textField=$textField"""
+    if (textEditor != null) result += """textEditor=$textEditor"""
     if (slider != null) result += """slider=$slider"""
     if (toggle != null) result += """toggle=$toggle"""
     if (checkbox != null) result += """checkbox=$checkbox"""
-    if (radio_button != null) result += """radio_button=$radio_button"""
+    if (radioButton != null) result += """radioButton=$radioButton"""
     if (picker != null) result += """picker=$picker"""
-    if (top_app_bar != null) result += """top_app_bar=$top_app_bar"""
-    if (navigation_view_item != null) result += """navigation_view_item=$navigation_view_item"""
+    if (topAppBar != null) result += """topAppBar=$topAppBar"""
+    if (bottomBarItem != null) result += """bottomBarItem=$bottomBarItem"""
     if (alert != null) result += """alert=$alert"""
-    if (action_sheet != null) result += """action_sheet=$action_sheet"""
+    if (actionSheet != null) result += """actionSheet=$actionSheet"""
     return result.joinToString(prefix = "ElementComponent{", separator = ", ", postfix = "}")
   }
 
@@ -241,21 +235,21 @@ public class ElementComponent(
     button: ButtonComponent? = this.button,
     label: TextComponent? = this.label,
     image: ImageComponent? = this.image,
-    text_field: TextFieldComponent? = this.text_field,
-    text_editor: TextEditorComponent? = this.text_editor,
+    textField: TextFieldComponent? = this.textField,
+    textEditor: TextEditorComponent? = this.textEditor,
     slider: SliderComponent? = this.slider,
     toggle: ToggleComponent? = this.toggle,
     checkbox: CheckBoxComponent? = this.checkbox,
-    radio_button: RadioButtonComponent? = this.radio_button,
+    radioButton: RadioButtonComponent? = this.radioButton,
     picker: PickerComponent? = this.picker,
-    top_app_bar: TopAppBarComponent? = this.top_app_bar,
-    navigation_view_item: NavigationBarItemComponent? = this.navigation_view_item,
+    topAppBar: TopAppBarComponent? = this.topAppBar,
+    bottomBarItem: BottomBarItemComponent? = this.bottomBarItem,
     alert: AlertComponent? = this.alert,
-    action_sheet: ActionSheetComponent? = this.action_sheet,
+    actionSheet: ActionSheetComponent? = this.actionSheet,
     unknownFields: ByteString = this.unknownFields,
-  ): ElementComponent = ElementComponent(button, label, image, text_field, text_editor, slider,
-      toggle, checkbox, radio_button, picker, top_app_bar, navigation_view_item, alert,
-      action_sheet, unknownFields)
+  ): ElementComponent = ElementComponent(button, label, image, textField, textEditor, slider,
+      toggle, checkbox, radioButton, picker, topAppBar, bottomBarItem, alert, actionSheet,
+      unknownFields)
 
   public companion object {
     @JvmField
@@ -272,18 +266,17 @@ public class ElementComponent(
         size += ButtonComponent.ADAPTER.encodedSizeWithTag(1, value.button)
         size += TextComponent.ADAPTER.encodedSizeWithTag(2, value.label)
         size += ImageComponent.ADAPTER.encodedSizeWithTag(3, value.image)
-        size += TextFieldComponent.ADAPTER.encodedSizeWithTag(4, value.text_field)
-        size += TextEditorComponent.ADAPTER.encodedSizeWithTag(5, value.text_editor)
+        size += TextFieldComponent.ADAPTER.encodedSizeWithTag(4, value.textField)
+        size += TextEditorComponent.ADAPTER.encodedSizeWithTag(5, value.textEditor)
         size += SliderComponent.ADAPTER.encodedSizeWithTag(6, value.slider)
         size += ToggleComponent.ADAPTER.encodedSizeWithTag(7, value.toggle)
         size += CheckBoxComponent.ADAPTER.encodedSizeWithTag(8, value.checkbox)
-        size += RadioButtonComponent.ADAPTER.encodedSizeWithTag(9, value.radio_button)
+        size += RadioButtonComponent.ADAPTER.encodedSizeWithTag(9, value.radioButton)
         size += PickerComponent.ADAPTER.encodedSizeWithTag(10, value.picker)
-        size += TopAppBarComponent.ADAPTER.encodedSizeWithTag(11, value.top_app_bar)
-        size += NavigationBarItemComponent.ADAPTER.encodedSizeWithTag(12,
-            value.navigation_view_item)
+        size += TopAppBarComponent.ADAPTER.encodedSizeWithTag(11, value.topAppBar)
+        size += BottomBarItemComponent.ADAPTER.encodedSizeWithTag(12, value.bottomBarItem)
         size += AlertComponent.ADAPTER.encodedSizeWithTag(13, value.alert)
-        size += ActionSheetComponent.ADAPTER.encodedSizeWithTag(14, value.action_sheet)
+        size += ActionSheetComponent.ADAPTER.encodedSizeWithTag(14, value.actionSheet)
         return size
       }
 
@@ -291,33 +284,33 @@ public class ElementComponent(
         ButtonComponent.ADAPTER.encodeWithTag(writer, 1, value.button)
         TextComponent.ADAPTER.encodeWithTag(writer, 2, value.label)
         ImageComponent.ADAPTER.encodeWithTag(writer, 3, value.image)
-        TextFieldComponent.ADAPTER.encodeWithTag(writer, 4, value.text_field)
-        TextEditorComponent.ADAPTER.encodeWithTag(writer, 5, value.text_editor)
+        TextFieldComponent.ADAPTER.encodeWithTag(writer, 4, value.textField)
+        TextEditorComponent.ADAPTER.encodeWithTag(writer, 5, value.textEditor)
         SliderComponent.ADAPTER.encodeWithTag(writer, 6, value.slider)
         ToggleComponent.ADAPTER.encodeWithTag(writer, 7, value.toggle)
         CheckBoxComponent.ADAPTER.encodeWithTag(writer, 8, value.checkbox)
-        RadioButtonComponent.ADAPTER.encodeWithTag(writer, 9, value.radio_button)
+        RadioButtonComponent.ADAPTER.encodeWithTag(writer, 9, value.radioButton)
         PickerComponent.ADAPTER.encodeWithTag(writer, 10, value.picker)
-        TopAppBarComponent.ADAPTER.encodeWithTag(writer, 11, value.top_app_bar)
-        NavigationBarItemComponent.ADAPTER.encodeWithTag(writer, 12, value.navigation_view_item)
+        TopAppBarComponent.ADAPTER.encodeWithTag(writer, 11, value.topAppBar)
+        BottomBarItemComponent.ADAPTER.encodeWithTag(writer, 12, value.bottomBarItem)
         AlertComponent.ADAPTER.encodeWithTag(writer, 13, value.alert)
-        ActionSheetComponent.ADAPTER.encodeWithTag(writer, 14, value.action_sheet)
+        ActionSheetComponent.ADAPTER.encodeWithTag(writer, 14, value.actionSheet)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: ElementComponent): Unit {
         writer.writeBytes(value.unknownFields)
-        ActionSheetComponent.ADAPTER.encodeWithTag(writer, 14, value.action_sheet)
+        ActionSheetComponent.ADAPTER.encodeWithTag(writer, 14, value.actionSheet)
         AlertComponent.ADAPTER.encodeWithTag(writer, 13, value.alert)
-        NavigationBarItemComponent.ADAPTER.encodeWithTag(writer, 12, value.navigation_view_item)
-        TopAppBarComponent.ADAPTER.encodeWithTag(writer, 11, value.top_app_bar)
+        BottomBarItemComponent.ADAPTER.encodeWithTag(writer, 12, value.bottomBarItem)
+        TopAppBarComponent.ADAPTER.encodeWithTag(writer, 11, value.topAppBar)
         PickerComponent.ADAPTER.encodeWithTag(writer, 10, value.picker)
-        RadioButtonComponent.ADAPTER.encodeWithTag(writer, 9, value.radio_button)
+        RadioButtonComponent.ADAPTER.encodeWithTag(writer, 9, value.radioButton)
         CheckBoxComponent.ADAPTER.encodeWithTag(writer, 8, value.checkbox)
         ToggleComponent.ADAPTER.encodeWithTag(writer, 7, value.toggle)
         SliderComponent.ADAPTER.encodeWithTag(writer, 6, value.slider)
-        TextEditorComponent.ADAPTER.encodeWithTag(writer, 5, value.text_editor)
-        TextFieldComponent.ADAPTER.encodeWithTag(writer, 4, value.text_field)
+        TextEditorComponent.ADAPTER.encodeWithTag(writer, 5, value.textEditor)
+        TextFieldComponent.ADAPTER.encodeWithTag(writer, 4, value.textField)
         ImageComponent.ADAPTER.encodeWithTag(writer, 3, value.image)
         TextComponent.ADAPTER.encodeWithTag(writer, 2, value.label)
         ButtonComponent.ADAPTER.encodeWithTag(writer, 1, value.button)
@@ -327,33 +320,33 @@ public class ElementComponent(
         var button: ButtonComponent? = null
         var label: TextComponent? = null
         var image: ImageComponent? = null
-        var text_field: TextFieldComponent? = null
-        var text_editor: TextEditorComponent? = null
+        var textField: TextFieldComponent? = null
+        var textEditor: TextEditorComponent? = null
         var slider: SliderComponent? = null
         var toggle: ToggleComponent? = null
         var checkbox: CheckBoxComponent? = null
-        var radio_button: RadioButtonComponent? = null
+        var radioButton: RadioButtonComponent? = null
         var picker: PickerComponent? = null
-        var top_app_bar: TopAppBarComponent? = null
-        var navigation_view_item: NavigationBarItemComponent? = null
+        var topAppBar: TopAppBarComponent? = null
+        var bottomBarItem: BottomBarItemComponent? = null
         var alert: AlertComponent? = null
-        var action_sheet: ActionSheetComponent? = null
+        var actionSheet: ActionSheetComponent? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> button = ButtonComponent.ADAPTER.decode(reader)
             2 -> label = TextComponent.ADAPTER.decode(reader)
             3 -> image = ImageComponent.ADAPTER.decode(reader)
-            4 -> text_field = TextFieldComponent.ADAPTER.decode(reader)
-            5 -> text_editor = TextEditorComponent.ADAPTER.decode(reader)
+            4 -> textField = TextFieldComponent.ADAPTER.decode(reader)
+            5 -> textEditor = TextEditorComponent.ADAPTER.decode(reader)
             6 -> slider = SliderComponent.ADAPTER.decode(reader)
             7 -> toggle = ToggleComponent.ADAPTER.decode(reader)
             8 -> checkbox = CheckBoxComponent.ADAPTER.decode(reader)
-            9 -> radio_button = RadioButtonComponent.ADAPTER.decode(reader)
+            9 -> radioButton = RadioButtonComponent.ADAPTER.decode(reader)
             10 -> picker = PickerComponent.ADAPTER.decode(reader)
-            11 -> top_app_bar = TopAppBarComponent.ADAPTER.decode(reader)
-            12 -> navigation_view_item = NavigationBarItemComponent.ADAPTER.decode(reader)
+            11 -> topAppBar = TopAppBarComponent.ADAPTER.decode(reader)
+            12 -> bottomBarItem = BottomBarItemComponent.ADAPTER.decode(reader)
             13 -> alert = AlertComponent.ADAPTER.decode(reader)
-            14 -> action_sheet = ActionSheetComponent.ADAPTER.decode(reader)
+            14 -> actionSheet = ActionSheetComponent.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
@@ -361,17 +354,17 @@ public class ElementComponent(
           button = button,
           label = label,
           image = image,
-          text_field = text_field,
-          text_editor = text_editor,
+          textField = textField,
+          textEditor = textEditor,
           slider = slider,
           toggle = toggle,
           checkbox = checkbox,
-          radio_button = radio_button,
+          radioButton = radioButton,
           picker = picker,
-          top_app_bar = top_app_bar,
-          navigation_view_item = navigation_view_item,
+          topAppBar = topAppBar,
+          bottomBarItem = bottomBarItem,
           alert = alert,
-          action_sheet = action_sheet,
+          actionSheet = actionSheet,
           unknownFields = unknownFields
         )
       }
@@ -380,18 +373,17 @@ public class ElementComponent(
         button = value.button?.let(ButtonComponent.ADAPTER::redact),
         label = value.label?.let(TextComponent.ADAPTER::redact),
         image = value.image?.let(ImageComponent.ADAPTER::redact),
-        text_field = value.text_field?.let(TextFieldComponent.ADAPTER::redact),
-        text_editor = value.text_editor?.let(TextEditorComponent.ADAPTER::redact),
+        textField = value.textField?.let(TextFieldComponent.ADAPTER::redact),
+        textEditor = value.textEditor?.let(TextEditorComponent.ADAPTER::redact),
         slider = value.slider?.let(SliderComponent.ADAPTER::redact),
         toggle = value.toggle?.let(ToggleComponent.ADAPTER::redact),
         checkbox = value.checkbox?.let(CheckBoxComponent.ADAPTER::redact),
-        radio_button = value.radio_button?.let(RadioButtonComponent.ADAPTER::redact),
+        radioButton = value.radioButton?.let(RadioButtonComponent.ADAPTER::redact),
         picker = value.picker?.let(PickerComponent.ADAPTER::redact),
-        top_app_bar = value.top_app_bar?.let(TopAppBarComponent.ADAPTER::redact),
-        navigation_view_item =
-            value.navigation_view_item?.let(NavigationBarItemComponent.ADAPTER::redact),
+        topAppBar = value.topAppBar?.let(TopAppBarComponent.ADAPTER::redact),
+        bottomBarItem = value.bottomBarItem?.let(BottomBarItemComponent.ADAPTER::redact),
         alert = value.alert?.let(AlertComponent.ADAPTER::redact),
-        action_sheet = value.action_sheet?.let(ActionSheetComponent.ADAPTER::redact),
+        actionSheet = value.actionSheet?.let(ActionSheetComponent.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

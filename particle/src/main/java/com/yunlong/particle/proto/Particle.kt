@@ -50,12 +50,6 @@ public class Particle(
   public val layout: LayoutComponent? = null,
   @field:WireField(
     tag = 4,
-    adapter = "com.yunlong.particle.proto.NavigationComponent#ADAPTER",
-    oneofName = "component",
-  )
-  public val navigation: NavigationComponent? = null,
-  @field:WireField(
-    tag = 5,
     adapter = "com.yunlong.particle.proto.Modifier#ADAPTER",
   )
   public val modifier: Modifier? = null,
@@ -63,15 +57,15 @@ public class Particle(
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<Particle, Nothing>(ADAPTER, unknownFields) {
   @field:WireField(
-    tag = 6,
+    tag = 5,
     adapter = "com.yunlong.particle.proto.Interaction#ADAPTER",
     label = WireField.Label.REPEATED,
   )
   public val interactions: List<Interaction> = immutableCopyOf("interactions", interactions)
 
   init {
-    require(countNonNull(element, layout, navigation) <= 1) {
-      "At most one of element, layout, navigation may be non-null"
+    require(countNonNull(element, layout) <= 1) {
+      "At most one of element, layout may be non-null"
     }
   }
 
@@ -89,7 +83,6 @@ public class Particle(
     if (id != other.id) return false
     if (element != other.element) return false
     if (layout != other.layout) return false
-    if (navigation != other.navigation) return false
     if (modifier != other.modifier) return false
     if (interactions != other.interactions) return false
     return true
@@ -102,7 +95,6 @@ public class Particle(
       result = result * 37 + id.hashCode()
       result = result * 37 + (element?.hashCode() ?: 0)
       result = result * 37 + (layout?.hashCode() ?: 0)
-      result = result * 37 + (navigation?.hashCode() ?: 0)
       result = result * 37 + (modifier?.hashCode() ?: 0)
       result = result * 37 + interactions.hashCode()
       super.hashCode = result
@@ -115,7 +107,6 @@ public class Particle(
     result += """id=${sanitize(id)}"""
     if (element != null) result += """element=$element"""
     if (layout != null) result += """layout=$layout"""
-    if (navigation != null) result += """navigation=$navigation"""
     if (modifier != null) result += """modifier=$modifier"""
     if (interactions.isNotEmpty()) result += """interactions=$interactions"""
     return result.joinToString(prefix = "Particle{", separator = ", ", postfix = "}")
@@ -125,11 +116,10 @@ public class Particle(
     id: String = this.id,
     element: ElementComponent? = this.element,
     layout: LayoutComponent? = this.layout,
-    navigation: NavigationComponent? = this.navigation,
     modifier: Modifier? = this.modifier,
     interactions: List<Interaction> = this.interactions,
     unknownFields: ByteString = this.unknownFields,
-  ): Particle = Particle(id, element, layout, navigation, modifier, interactions, unknownFields)
+  ): Particle = Particle(id, element, layout, modifier, interactions, unknownFields)
 
   public companion object {
     @JvmField
@@ -146,29 +136,26 @@ public class Particle(
         if (value.id != "") size += ProtoAdapter.STRING.encodedSizeWithTag(1, value.id)
         size += ElementComponent.ADAPTER.encodedSizeWithTag(2, value.element)
         size += LayoutComponent.ADAPTER.encodedSizeWithTag(3, value.layout)
-        size += NavigationComponent.ADAPTER.encodedSizeWithTag(4, value.navigation)
-        size += Modifier.ADAPTER.encodedSizeWithTag(5, value.modifier)
-        size += Interaction.ADAPTER.asRepeated().encodedSizeWithTag(6, value.interactions)
+        size += Modifier.ADAPTER.encodedSizeWithTag(4, value.modifier)
+        size += Interaction.ADAPTER.asRepeated().encodedSizeWithTag(5, value.interactions)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: Particle): Unit {
         if (value.id != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.id)
-        Modifier.ADAPTER.encodeWithTag(writer, 5, value.modifier)
-        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 6, value.interactions)
+        Modifier.ADAPTER.encodeWithTag(writer, 4, value.modifier)
+        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.interactions)
         ElementComponent.ADAPTER.encodeWithTag(writer, 2, value.element)
         LayoutComponent.ADAPTER.encodeWithTag(writer, 3, value.layout)
-        NavigationComponent.ADAPTER.encodeWithTag(writer, 4, value.navigation)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: Particle): Unit {
         writer.writeBytes(value.unknownFields)
-        NavigationComponent.ADAPTER.encodeWithTag(writer, 4, value.navigation)
         LayoutComponent.ADAPTER.encodeWithTag(writer, 3, value.layout)
         ElementComponent.ADAPTER.encodeWithTag(writer, 2, value.element)
-        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 6, value.interactions)
-        Modifier.ADAPTER.encodeWithTag(writer, 5, value.modifier)
+        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.interactions)
+        Modifier.ADAPTER.encodeWithTag(writer, 4, value.modifier)
         if (value.id != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.id)
       }
 
@@ -176,7 +163,6 @@ public class Particle(
         var id: String = ""
         var element: ElementComponent? = null
         var layout: LayoutComponent? = null
-        var navigation: NavigationComponent? = null
         var modifier: Modifier? = null
         val interactions = mutableListOf<Interaction>()
         val unknownFields = reader.forEachTag { tag ->
@@ -184,9 +170,8 @@ public class Particle(
             1 -> id = ProtoAdapter.STRING.decode(reader)
             2 -> element = ElementComponent.ADAPTER.decode(reader)
             3 -> layout = LayoutComponent.ADAPTER.decode(reader)
-            4 -> navigation = NavigationComponent.ADAPTER.decode(reader)
-            5 -> modifier = Modifier.ADAPTER.decode(reader)
-            6 -> interactions.add(Interaction.ADAPTER.decode(reader))
+            4 -> modifier = Modifier.ADAPTER.decode(reader)
+            5 -> interactions.add(Interaction.ADAPTER.decode(reader))
             else -> reader.readUnknownField(tag)
           }
         }
@@ -194,7 +179,6 @@ public class Particle(
           id = id,
           element = element,
           layout = layout,
-          navigation = navigation,
           modifier = modifier,
           interactions = interactions,
           unknownFields = unknownFields
@@ -204,7 +188,6 @@ public class Particle(
       public override fun redact(`value`: Particle): Particle = value.copy(
         element = value.element?.let(ElementComponent.ADAPTER::redact),
         layout = value.layout?.let(LayoutComponent.ADAPTER::redact),
-        navigation = value.navigation?.let(NavigationComponent.ADAPTER::redact),
         modifier = value.modifier?.let(Modifier.ADAPTER::redact),
         interactions = value.interactions.redactElements(Interaction.ADAPTER),
         unknownFields = ByteString.EMPTY

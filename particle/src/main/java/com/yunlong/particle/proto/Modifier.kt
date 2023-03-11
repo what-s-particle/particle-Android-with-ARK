@@ -96,9 +96,8 @@ public class Modifier(
   @field:WireField(
     tag = 10,
     adapter = "com.yunlong.particle.proto.SizeModifier#ADAPTER",
-    jsonName = "requireSize",
   )
-  public val require_size: SizeModifier? = null,
+  public val requireSize: SizeModifier? = null,
   @field:WireField(
     tag = 11,
     adapter = "com.yunlong.particle.proto.ShadowModifier#ADAPTER",
@@ -148,7 +147,7 @@ public class Modifier(
     if (offset != other.offset) return false
     if (opacity != other.opacity) return false
     if (padding != other.padding) return false
-    if (require_size != other.require_size) return false
+    if (requireSize != other.requireSize) return false
     if (shadow != other.shadow) return false
     if (size != other.size) return false
     if (visible != other.visible) return false
@@ -169,7 +168,7 @@ public class Modifier(
       result = result * 37 + (offset?.hashCode() ?: 0)
       result = result * 37 + (opacity?.hashCode() ?: 0)
       result = result * 37 + (padding?.hashCode() ?: 0)
-      result = result * 37 + (require_size?.hashCode() ?: 0)
+      result = result * 37 + (requireSize?.hashCode() ?: 0)
       result = result * 37 + (shadow?.hashCode() ?: 0)
       result = result * 37 + (size?.hashCode() ?: 0)
       result = result * 37 + (visible?.hashCode() ?: 0)
@@ -190,7 +189,7 @@ public class Modifier(
     if (offset != null) result += """offset=$offset"""
     if (opacity != null) result += """opacity=$opacity"""
     if (padding != null) result += """padding=$padding"""
-    if (require_size != null) result += """require_size=$require_size"""
+    if (requireSize != null) result += """requireSize=$requireSize"""
     if (shadow != null) result += """shadow=$shadow"""
     if (size != null) result += """size=$size"""
     if (visible != null) result += """visible=$visible"""
@@ -208,14 +207,14 @@ public class Modifier(
     offset: OffsetModifier? = this.offset,
     opacity: Float? = this.opacity,
     padding: InsetsModifier? = this.padding,
-    require_size: SizeModifier? = this.require_size,
+    requireSize: SizeModifier? = this.requireSize,
     shadow: ShadowModifier? = this.shadow,
     size: SizeModifier? = this.size,
     visible: Boolean? = this.visible,
     weight: Float? = this.weight,
     unknownFields: ByteString = this.unknownFields,
   ): Modifier = Modifier(custom, background, blur, border, clickable, focusable, offset, opacity,
-      padding, require_size, shadow, size, visible, weight, unknownFields)
+      padding, requireSize, shadow, size, visible, weight, unknownFields)
 
   public companion object {
     @JvmField
@@ -238,7 +237,7 @@ public class Modifier(
         size_ += OffsetModifier.ADAPTER.encodedSizeWithTag(7, value.offset)
         size_ += ProtoAdapter.FLOAT.encodedSizeWithTag(8, value.opacity)
         size_ += InsetsModifier.ADAPTER.encodedSizeWithTag(9, value.padding)
-        size_ += SizeModifier.ADAPTER.encodedSizeWithTag(10, value.require_size)
+        size_ += SizeModifier.ADAPTER.encodedSizeWithTag(10, value.requireSize)
         size_ += ShadowModifier.ADAPTER.encodedSizeWithTag(11, value.shadow)
         size_ += SizeModifier.ADAPTER.encodedSizeWithTag(12, value.size)
         size_ += ProtoAdapter.BOOL.encodedSizeWithTag(13, value.visible)
@@ -256,7 +255,7 @@ public class Modifier(
         OffsetModifier.ADAPTER.encodeWithTag(writer, 7, value.offset)
         ProtoAdapter.FLOAT.encodeWithTag(writer, 8, value.opacity)
         InsetsModifier.ADAPTER.encodeWithTag(writer, 9, value.padding)
-        SizeModifier.ADAPTER.encodeWithTag(writer, 10, value.require_size)
+        SizeModifier.ADAPTER.encodeWithTag(writer, 10, value.requireSize)
         ShadowModifier.ADAPTER.encodeWithTag(writer, 11, value.shadow)
         SizeModifier.ADAPTER.encodeWithTag(writer, 12, value.size)
         ProtoAdapter.BOOL.encodeWithTag(writer, 13, value.visible)
@@ -270,7 +269,7 @@ public class Modifier(
         ProtoAdapter.BOOL.encodeWithTag(writer, 13, value.visible)
         SizeModifier.ADAPTER.encodeWithTag(writer, 12, value.size)
         ShadowModifier.ADAPTER.encodeWithTag(writer, 11, value.shadow)
-        SizeModifier.ADAPTER.encodeWithTag(writer, 10, value.require_size)
+        SizeModifier.ADAPTER.encodeWithTag(writer, 10, value.requireSize)
         InsetsModifier.ADAPTER.encodeWithTag(writer, 9, value.padding)
         ProtoAdapter.FLOAT.encodeWithTag(writer, 8, value.opacity)
         OffsetModifier.ADAPTER.encodeWithTag(writer, 7, value.offset)
@@ -292,7 +291,7 @@ public class Modifier(
         var offset: OffsetModifier? = null
         var opacity: Float? = null
         var padding: InsetsModifier? = null
-        var require_size: SizeModifier? = null
+        var requireSize: SizeModifier? = null
         var shadow: ShadowModifier? = null
         var size: SizeModifier? = null
         var visible: Boolean? = null
@@ -308,7 +307,7 @@ public class Modifier(
             7 -> offset = OffsetModifier.ADAPTER.decode(reader)
             8 -> opacity = ProtoAdapter.FLOAT.decode(reader)
             9 -> padding = InsetsModifier.ADAPTER.decode(reader)
-            10 -> require_size = SizeModifier.ADAPTER.decode(reader)
+            10 -> requireSize = SizeModifier.ADAPTER.decode(reader)
             11 -> try {
               shadow = ShadowModifier.ADAPTER.decode(reader)
             } catch (e: ProtoAdapter.EnumConstantNotFoundException) {
@@ -330,7 +329,7 @@ public class Modifier(
           offset = offset,
           opacity = opacity,
           padding = padding,
-          require_size = require_size,
+          requireSize = requireSize,
           shadow = shadow,
           size = size,
           visible = visible,
@@ -346,7 +345,7 @@ public class Modifier(
         border = value.border?.let(BorderModifier.ADAPTER::redact),
         offset = value.offset?.let(OffsetModifier.ADAPTER::redact),
         padding = value.padding?.let(InsetsModifier.ADAPTER::redact),
-        require_size = value.require_size?.let(SizeModifier.ADAPTER::redact),
+        requireSize = value.requireSize?.let(SizeModifier.ADAPTER::redact),
         size = value.size?.let(SizeModifier.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )

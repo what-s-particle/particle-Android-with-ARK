@@ -50,15 +50,13 @@ public class LazyRowComponent(
   @field:WireField(
     tag = 5,
     adapter = "com.squareup.wire.ProtoAdapter#BOOL",
-    jsonName = "reverseLayout",
   )
-  public val reverse_layout: Boolean? = null,
+  public val reverseLayout: Boolean? = null,
   @field:WireField(
     tag = 6,
     adapter = "com.yunlong.particle.proto.InsetsModifier#ADAPTER",
-    jsonName = "contentPadding",
   )
-  public val content_padding: InsetsModifier? = null,
+  public val contentPadding: InsetsModifier? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<LazyRowComponent, Nothing>(ADAPTER, unknownFields) {
   /**
@@ -86,8 +84,8 @@ public class LazyRowComponent(
     if (arrangement != other.arrangement) return false
     if (alignment != other.alignment) return false
     if (spacing != other.spacing) return false
-    if (reverse_layout != other.reverse_layout) return false
-    if (content_padding != other.content_padding) return false
+    if (reverseLayout != other.reverseLayout) return false
+    if (contentPadding != other.contentPadding) return false
     return true
   }
 
@@ -99,8 +97,8 @@ public class LazyRowComponent(
       result = result * 37 + (arrangement?.hashCode() ?: 0)
       result = result * 37 + (alignment?.hashCode() ?: 0)
       result = result * 37 + (spacing?.hashCode() ?: 0)
-      result = result * 37 + (reverse_layout?.hashCode() ?: 0)
-      result = result * 37 + (content_padding?.hashCode() ?: 0)
+      result = result * 37 + (reverseLayout?.hashCode() ?: 0)
+      result = result * 37 + (contentPadding?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -112,8 +110,8 @@ public class LazyRowComponent(
     if (arrangement != null) result += """arrangement=$arrangement"""
     if (alignment != null) result += """alignment=$alignment"""
     if (spacing != null) result += """spacing=$spacing"""
-    if (reverse_layout != null) result += """reverse_layout=$reverse_layout"""
-    if (content_padding != null) result += """content_padding=$content_padding"""
+    if (reverseLayout != null) result += """reverseLayout=$reverseLayout"""
+    if (contentPadding != null) result += """contentPadding=$contentPadding"""
     return result.joinToString(prefix = "LazyRowComponent{", separator = ", ", postfix = "}")
   }
 
@@ -122,11 +120,11 @@ public class LazyRowComponent(
     arrangement: Arrangement? = this.arrangement,
     alignment: Alignment? = this.alignment,
     spacing: SizeModifier? = this.spacing,
-    reverse_layout: Boolean? = this.reverse_layout,
-    content_padding: InsetsModifier? = this.content_padding,
+    reverseLayout: Boolean? = this.reverseLayout,
+    contentPadding: InsetsModifier? = this.contentPadding,
     unknownFields: ByteString = this.unknownFields,
-  ): LazyRowComponent = LazyRowComponent(elements, arrangement, alignment, spacing, reverse_layout,
-      content_padding, unknownFields)
+  ): LazyRowComponent = LazyRowComponent(elements, arrangement, alignment, spacing, reverseLayout,
+      contentPadding, unknownFields)
 
   public companion object {
     @JvmField
@@ -144,8 +142,8 @@ public class LazyRowComponent(
         size += Arrangement.ADAPTER.encodedSizeWithTag(2, value.arrangement)
         size += Alignment.ADAPTER.encodedSizeWithTag(3, value.alignment)
         size += SizeModifier.ADAPTER.encodedSizeWithTag(4, value.spacing)
-        size += ProtoAdapter.BOOL.encodedSizeWithTag(5, value.reverse_layout)
-        size += InsetsModifier.ADAPTER.encodedSizeWithTag(6, value.content_padding)
+        size += ProtoAdapter.BOOL.encodedSizeWithTag(5, value.reverseLayout)
+        size += InsetsModifier.ADAPTER.encodedSizeWithTag(6, value.contentPadding)
         return size
       }
 
@@ -154,15 +152,15 @@ public class LazyRowComponent(
         Arrangement.ADAPTER.encodeWithTag(writer, 2, value.arrangement)
         Alignment.ADAPTER.encodeWithTag(writer, 3, value.alignment)
         SizeModifier.ADAPTER.encodeWithTag(writer, 4, value.spacing)
-        ProtoAdapter.BOOL.encodeWithTag(writer, 5, value.reverse_layout)
-        InsetsModifier.ADAPTER.encodeWithTag(writer, 6, value.content_padding)
+        ProtoAdapter.BOOL.encodeWithTag(writer, 5, value.reverseLayout)
+        InsetsModifier.ADAPTER.encodeWithTag(writer, 6, value.contentPadding)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: LazyRowComponent): Unit {
         writer.writeBytes(value.unknownFields)
-        InsetsModifier.ADAPTER.encodeWithTag(writer, 6, value.content_padding)
-        ProtoAdapter.BOOL.encodeWithTag(writer, 5, value.reverse_layout)
+        InsetsModifier.ADAPTER.encodeWithTag(writer, 6, value.contentPadding)
+        ProtoAdapter.BOOL.encodeWithTag(writer, 5, value.reverseLayout)
         SizeModifier.ADAPTER.encodeWithTag(writer, 4, value.spacing)
         Alignment.ADAPTER.encodeWithTag(writer, 3, value.alignment)
         Arrangement.ADAPTER.encodeWithTag(writer, 2, value.arrangement)
@@ -174,8 +172,8 @@ public class LazyRowComponent(
         var arrangement: Arrangement? = null
         var alignment: Alignment? = null
         var spacing: SizeModifier? = null
-        var reverse_layout: Boolean? = null
-        var content_padding: InsetsModifier? = null
+        var reverseLayout: Boolean? = null
+        var contentPadding: InsetsModifier? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> elements.add(Particle.ADAPTER.decode(reader))
@@ -190,8 +188,8 @@ public class LazyRowComponent(
               reader.addUnknownField(tag, FieldEncoding.VARINT, e.value.toLong())
             }
             4 -> spacing = SizeModifier.ADAPTER.decode(reader)
-            5 -> reverse_layout = ProtoAdapter.BOOL.decode(reader)
-            6 -> content_padding = InsetsModifier.ADAPTER.decode(reader)
+            5 -> reverseLayout = ProtoAdapter.BOOL.decode(reader)
+            6 -> contentPadding = InsetsModifier.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
@@ -200,8 +198,8 @@ public class LazyRowComponent(
           arrangement = arrangement,
           alignment = alignment,
           spacing = spacing,
-          reverse_layout = reverse_layout,
-          content_padding = content_padding,
+          reverseLayout = reverseLayout,
+          contentPadding = contentPadding,
           unknownFields = unknownFields
         )
       }
@@ -209,7 +207,7 @@ public class LazyRowComponent(
       public override fun redact(`value`: LazyRowComponent): LazyRowComponent = value.copy(
         elements = value.elements.redactElements(Particle.ADAPTER),
         spacing = value.spacing?.let(SizeModifier.ADAPTER::redact),
-        content_padding = value.content_padding?.let(InsetsModifier.ADAPTER::redact),
+        contentPadding = value.contentPadding?.let(InsetsModifier.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }
