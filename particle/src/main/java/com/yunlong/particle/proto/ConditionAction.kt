@@ -37,25 +37,23 @@ public class ConditionAction(
     label = WireField.Label.OMIT_IDENTITY,
   )
   public val type: ConditionType? = null,
-  if_actions: List<Action> = emptyList(),
-  else_actions: List<Action> = emptyList(),
+  ifActions: List<Action> = emptyList(),
+  elseActions: List<Action> = emptyList(),
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<ConditionAction, Nothing>(ADAPTER, unknownFields) {
   @field:WireField(
     tag = 2,
     adapter = "com.yunlong.particle.proto.Action#ADAPTER",
     label = WireField.Label.REPEATED,
-    jsonName = "ifActions",
   )
-  public val if_actions: List<Action> = immutableCopyOf("if_actions", if_actions)
+  public val ifActions: List<Action> = immutableCopyOf("ifActions", ifActions)
 
   @field:WireField(
     tag = 3,
     adapter = "com.yunlong.particle.proto.Action#ADAPTER",
     label = WireField.Label.REPEATED,
-    jsonName = "elseActions",
   )
-  public val else_actions: List<Action> = immutableCopyOf("else_actions", else_actions)
+  public val elseActions: List<Action> = immutableCopyOf("elseActions", elseActions)
 
   @Deprecated(
     message = "Shouldn't be used in Kotlin",
@@ -69,8 +67,8 @@ public class ConditionAction(
     if (other !is ConditionAction) return false
     if (unknownFields != other.unknownFields) return false
     if (type != other.type) return false
-    if (if_actions != other.if_actions) return false
-    if (else_actions != other.else_actions) return false
+    if (ifActions != other.ifActions) return false
+    if (elseActions != other.elseActions) return false
     return true
   }
 
@@ -79,8 +77,8 @@ public class ConditionAction(
     if (result == 0) {
       result = unknownFields.hashCode()
       result = result * 37 + (type?.hashCode() ?: 0)
-      result = result * 37 + if_actions.hashCode()
-      result = result * 37 + else_actions.hashCode()
+      result = result * 37 + ifActions.hashCode()
+      result = result * 37 + elseActions.hashCode()
       super.hashCode = result
     }
     return result
@@ -89,17 +87,17 @@ public class ConditionAction(
   public override fun toString(): String {
     val result = mutableListOf<String>()
     if (type != null) result += """type=$type"""
-    if (if_actions.isNotEmpty()) result += """if_actions=$if_actions"""
-    if (else_actions.isNotEmpty()) result += """else_actions=$else_actions"""
+    if (ifActions.isNotEmpty()) result += """ifActions=$ifActions"""
+    if (elseActions.isNotEmpty()) result += """elseActions=$elseActions"""
     return result.joinToString(prefix = "ConditionAction{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
     type: ConditionType? = this.type,
-    if_actions: List<Action> = this.if_actions,
-    else_actions: List<Action> = this.else_actions,
+    ifActions: List<Action> = this.ifActions,
+    elseActions: List<Action> = this.elseActions,
     unknownFields: ByteString = this.unknownFields,
-  ): ConditionAction = ConditionAction(type, if_actions, else_actions, unknownFields)
+  ): ConditionAction = ConditionAction(type, ifActions, elseActions, unknownFields)
 
   public companion object {
     @JvmField
@@ -114,49 +112,49 @@ public class ConditionAction(
       public override fun encodedSize(`value`: ConditionAction): Int {
         var size = value.unknownFields.size
         if (value.type != null) size += ConditionType.ADAPTER.encodedSizeWithTag(1, value.type)
-        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(2, value.if_actions)
-        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(3, value.else_actions)
+        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(2, value.ifActions)
+        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(3, value.elseActions)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: ConditionAction): Unit {
         if (value.type != null) ConditionType.ADAPTER.encodeWithTag(writer, 1, value.type)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 2, value.if_actions)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.else_actions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 2, value.ifActions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.elseActions)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: ConditionAction): Unit {
         writer.writeBytes(value.unknownFields)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.else_actions)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 2, value.if_actions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.elseActions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 2, value.ifActions)
         if (value.type != null) ConditionType.ADAPTER.encodeWithTag(writer, 1, value.type)
       }
 
       public override fun decode(reader: ProtoReader): ConditionAction {
         var type: ConditionType? = null
-        val if_actions = mutableListOf<Action>()
-        val else_actions = mutableListOf<Action>()
+        val ifActions = mutableListOf<Action>()
+        val elseActions = mutableListOf<Action>()
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> type = ConditionType.ADAPTER.decode(reader)
-            2 -> if_actions.add(Action.ADAPTER.decode(reader))
-            3 -> else_actions.add(Action.ADAPTER.decode(reader))
+            2 -> ifActions.add(Action.ADAPTER.decode(reader))
+            3 -> elseActions.add(Action.ADAPTER.decode(reader))
             else -> reader.readUnknownField(tag)
           }
         }
         return ConditionAction(
           type = type,
-          if_actions = if_actions,
-          else_actions = else_actions,
+          ifActions = ifActions,
+          elseActions = elseActions,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: ConditionAction): ConditionAction = value.copy(
         type = value.type?.let(ConditionType.ADAPTER::redact),
-        if_actions = value.if_actions.redactElements(Action.ADAPTER),
-        else_actions = value.else_actions.redactElements(Action.ADAPTER),
+        ifActions = value.ifActions.redactElements(Action.ADAPTER),
+        elseActions = value.elseActions.redactElements(Action.ADAPTER),
         unknownFields = ByteString.EMPTY
       )
     }

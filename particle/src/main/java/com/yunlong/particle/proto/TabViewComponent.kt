@@ -58,18 +58,16 @@ public class TabViewComponent(
   @field:WireField(
     tag = 4,
     adapter = "com.yunlong.particle.proto.ColorModifier#ADAPTER",
-    jsonName = "selectedColor",
   )
-  public val selected_color: ColorModifier? = null,
+  public val selectedColor: ColorModifier? = null,
   /**
    * the color for the content of this tab when not selected
    */
   @field:WireField(
     tag = 5,
     adapter = "com.yunlong.particle.proto.ColorModifier#ADAPTER",
-    jsonName = "unselectedColor",
   )
-  public val unselected_color: ColorModifier? = null,
+  public val unselectedColor: ColorModifier? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<TabViewComponent, Nothing>(ADAPTER, unknownFields) {
   /**
@@ -96,8 +94,8 @@ public class TabViewComponent(
     if (tabs != other.tabs) return false
     if (selected != other.selected) return false
     if (enabled != other.enabled) return false
-    if (selected_color != other.selected_color) return false
-    if (unselected_color != other.unselected_color) return false
+    if (selectedColor != other.selectedColor) return false
+    if (unselectedColor != other.unselectedColor) return false
     return true
   }
 
@@ -108,8 +106,8 @@ public class TabViewComponent(
       result = result * 37 + tabs.hashCode()
       result = result * 37 + selected.hashCode()
       result = result * 37 + enabled.hashCode()
-      result = result * 37 + (selected_color?.hashCode() ?: 0)
-      result = result * 37 + (unselected_color?.hashCode() ?: 0)
+      result = result * 37 + (selectedColor?.hashCode() ?: 0)
+      result = result * 37 + (unselectedColor?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -120,8 +118,8 @@ public class TabViewComponent(
     if (tabs.isNotEmpty()) result += """tabs=$tabs"""
     result += """selected=$selected"""
     result += """enabled=$enabled"""
-    if (selected_color != null) result += """selected_color=$selected_color"""
-    if (unselected_color != null) result += """unselected_color=$unselected_color"""
+    if (selectedColor != null) result += """selectedColor=$selectedColor"""
+    if (unselectedColor != null) result += """unselectedColor=$unselectedColor"""
     return result.joinToString(prefix = "TabViewComponent{", separator = ", ", postfix = "}")
   }
 
@@ -129,10 +127,10 @@ public class TabViewComponent(
     tabs: List<Particle> = this.tabs,
     selected: Boolean = this.selected,
     enabled: Boolean = this.enabled,
-    selected_color: ColorModifier? = this.selected_color,
-    unselected_color: ColorModifier? = this.unselected_color,
+    selectedColor: ColorModifier? = this.selectedColor,
+    unselectedColor: ColorModifier? = this.unselectedColor,
     unknownFields: ByteString = this.unknownFields,
-  ): TabViewComponent = TabViewComponent(tabs, selected, enabled, selected_color, unselected_color,
+  ): TabViewComponent = TabViewComponent(tabs, selected, enabled, selectedColor, unselectedColor,
       unknownFields)
 
   public companion object {
@@ -150,8 +148,8 @@ public class TabViewComponent(
         size += Particle.ADAPTER.asRepeated().encodedSizeWithTag(1, value.tabs)
         if (value.selected != false) size += ProtoAdapter.BOOL.encodedSizeWithTag(2, value.selected)
         if (value.enabled != false) size += ProtoAdapter.BOOL.encodedSizeWithTag(3, value.enabled)
-        size += ColorModifier.ADAPTER.encodedSizeWithTag(4, value.selected_color)
-        size += ColorModifier.ADAPTER.encodedSizeWithTag(5, value.unselected_color)
+        size += ColorModifier.ADAPTER.encodedSizeWithTag(4, value.selectedColor)
+        size += ColorModifier.ADAPTER.encodedSizeWithTag(5, value.unselectedColor)
         return size
       }
 
@@ -159,15 +157,15 @@ public class TabViewComponent(
         Particle.ADAPTER.asRepeated().encodeWithTag(writer, 1, value.tabs)
         if (value.selected != false) ProtoAdapter.BOOL.encodeWithTag(writer, 2, value.selected)
         if (value.enabled != false) ProtoAdapter.BOOL.encodeWithTag(writer, 3, value.enabled)
-        ColorModifier.ADAPTER.encodeWithTag(writer, 4, value.selected_color)
-        ColorModifier.ADAPTER.encodeWithTag(writer, 5, value.unselected_color)
+        ColorModifier.ADAPTER.encodeWithTag(writer, 4, value.selectedColor)
+        ColorModifier.ADAPTER.encodeWithTag(writer, 5, value.unselectedColor)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: TabViewComponent): Unit {
         writer.writeBytes(value.unknownFields)
-        ColorModifier.ADAPTER.encodeWithTag(writer, 5, value.unselected_color)
-        ColorModifier.ADAPTER.encodeWithTag(writer, 4, value.selected_color)
+        ColorModifier.ADAPTER.encodeWithTag(writer, 5, value.unselectedColor)
+        ColorModifier.ADAPTER.encodeWithTag(writer, 4, value.selectedColor)
         if (value.enabled != false) ProtoAdapter.BOOL.encodeWithTag(writer, 3, value.enabled)
         if (value.selected != false) ProtoAdapter.BOOL.encodeWithTag(writer, 2, value.selected)
         Particle.ADAPTER.asRepeated().encodeWithTag(writer, 1, value.tabs)
@@ -177,15 +175,15 @@ public class TabViewComponent(
         val tabs = mutableListOf<Particle>()
         var selected: Boolean = false
         var enabled: Boolean = false
-        var selected_color: ColorModifier? = null
-        var unselected_color: ColorModifier? = null
+        var selectedColor: ColorModifier? = null
+        var unselectedColor: ColorModifier? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> tabs.add(Particle.ADAPTER.decode(reader))
             2 -> selected = ProtoAdapter.BOOL.decode(reader)
             3 -> enabled = ProtoAdapter.BOOL.decode(reader)
-            4 -> selected_color = ColorModifier.ADAPTER.decode(reader)
-            5 -> unselected_color = ColorModifier.ADAPTER.decode(reader)
+            4 -> selectedColor = ColorModifier.ADAPTER.decode(reader)
+            5 -> unselectedColor = ColorModifier.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
@@ -193,16 +191,16 @@ public class TabViewComponent(
           tabs = tabs,
           selected = selected,
           enabled = enabled,
-          selected_color = selected_color,
-          unselected_color = unselected_color,
+          selectedColor = selectedColor,
+          unselectedColor = unselectedColor,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: TabViewComponent): TabViewComponent = value.copy(
         tabs = value.tabs.redactElements(Particle.ADAPTER),
-        selected_color = value.selected_color?.let(ColorModifier.ADAPTER::redact),
-        unselected_color = value.unselected_color?.let(ColorModifier.ADAPTER::redact),
+        selectedColor = value.selectedColor?.let(ColorModifier.ADAPTER::redact),
+        unselectedColor = value.unselectedColor?.let(ColorModifier.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

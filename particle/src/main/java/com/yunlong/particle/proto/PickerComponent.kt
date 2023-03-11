@@ -40,9 +40,8 @@ public class PickerComponent(
     tag = 2,
     adapter = "com.squareup.wire.ProtoAdapter#STRING",
     label = WireField.Label.OMIT_IDENTITY,
-    jsonName = "selectedOption",
   )
-  public val selected_option: String = "",
+  public val selectedOption: String = "",
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<PickerComponent, Nothing>(ADAPTER, unknownFields) {
   /**
@@ -67,7 +66,7 @@ public class PickerComponent(
     if (other !is PickerComponent) return false
     if (unknownFields != other.unknownFields) return false
     if (options != other.options) return false
-    if (selected_option != other.selected_option) return false
+    if (selectedOption != other.selectedOption) return false
     return true
   }
 
@@ -76,7 +75,7 @@ public class PickerComponent(
     if (result == 0) {
       result = unknownFields.hashCode()
       result = result * 37 + options.hashCode()
-      result = result * 37 + selected_option.hashCode()
+      result = result * 37 + selectedOption.hashCode()
       super.hashCode = result
     }
     return result
@@ -85,15 +84,15 @@ public class PickerComponent(
   public override fun toString(): String {
     val result = mutableListOf<String>()
     if (options.isNotEmpty()) result += """options=$options"""
-    result += """selected_option=${sanitize(selected_option)}"""
+    result += """selectedOption=${sanitize(selectedOption)}"""
     return result.joinToString(prefix = "PickerComponent{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
     options: List<Particle> = this.options,
-    selected_option: String = this.selected_option,
+    selectedOption: String = this.selectedOption,
     unknownFields: ByteString = this.unknownFields,
-  ): PickerComponent = PickerComponent(options, selected_option, unknownFields)
+  ): PickerComponent = PickerComponent(options, selectedOption, unknownFields)
 
   public companion object {
     @JvmField
@@ -108,38 +107,38 @@ public class PickerComponent(
       public override fun encodedSize(`value`: PickerComponent): Int {
         var size = value.unknownFields.size
         size += Particle.ADAPTER.asRepeated().encodedSizeWithTag(1, value.options)
-        if (value.selected_option != "") size += ProtoAdapter.STRING.encodedSizeWithTag(2,
-            value.selected_option)
+        if (value.selectedOption != "") size += ProtoAdapter.STRING.encodedSizeWithTag(2,
+            value.selectedOption)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: PickerComponent): Unit {
         Particle.ADAPTER.asRepeated().encodeWithTag(writer, 1, value.options)
-        if (value.selected_option != "") ProtoAdapter.STRING.encodeWithTag(writer, 2,
-            value.selected_option)
+        if (value.selectedOption != "") ProtoAdapter.STRING.encodeWithTag(writer, 2,
+            value.selectedOption)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: PickerComponent): Unit {
         writer.writeBytes(value.unknownFields)
-        if (value.selected_option != "") ProtoAdapter.STRING.encodeWithTag(writer, 2,
-            value.selected_option)
+        if (value.selectedOption != "") ProtoAdapter.STRING.encodeWithTag(writer, 2,
+            value.selectedOption)
         Particle.ADAPTER.asRepeated().encodeWithTag(writer, 1, value.options)
       }
 
       public override fun decode(reader: ProtoReader): PickerComponent {
         val options = mutableListOf<Particle>()
-        var selected_option: String = ""
+        var selectedOption: String = ""
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> options.add(Particle.ADAPTER.decode(reader))
-            2 -> selected_option = ProtoAdapter.STRING.decode(reader)
+            2 -> selectedOption = ProtoAdapter.STRING.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
         return PickerComponent(
           options = options,
-          selected_option = selected_option,
+          selectedOption = selectedOption,
           unknownFields = unknownFields
         )
       }

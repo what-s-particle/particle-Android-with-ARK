@@ -45,17 +45,15 @@ public class RetrieveDataAction(
     declaredName = "value",
   )
   public val value_: String = "",
-  subsequent_action: List<Action> = emptyList(),
+  subsequentAction: List<Action> = emptyList(),
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<RetrieveDataAction, Nothing>(ADAPTER, unknownFields) {
   @field:WireField(
     tag = 3,
     adapter = "com.yunlong.particle.proto.Action#ADAPTER",
     label = WireField.Label.REPEATED,
-    jsonName = "subsequentAction",
   )
-  public val subsequent_action: List<Action> = immutableCopyOf("subsequent_action",
-      subsequent_action)
+  public val subsequentAction: List<Action> = immutableCopyOf("subsequentAction", subsequentAction)
 
   @Deprecated(
     message = "Shouldn't be used in Kotlin",
@@ -70,7 +68,7 @@ public class RetrieveDataAction(
     if (unknownFields != other.unknownFields) return false
     if (key != other.key) return false
     if (value_ != other.value_) return false
-    if (subsequent_action != other.subsequent_action) return false
+    if (subsequentAction != other.subsequentAction) return false
     return true
   }
 
@@ -80,7 +78,7 @@ public class RetrieveDataAction(
       result = unknownFields.hashCode()
       result = result * 37 + key.hashCode()
       result = result * 37 + value_.hashCode()
-      result = result * 37 + subsequent_action.hashCode()
+      result = result * 37 + subsequentAction.hashCode()
       super.hashCode = result
     }
     return result
@@ -90,16 +88,16 @@ public class RetrieveDataAction(
     val result = mutableListOf<String>()
     result += """key=${sanitize(key)}"""
     result += """value_=${sanitize(value_)}"""
-    if (subsequent_action.isNotEmpty()) result += """subsequent_action=$subsequent_action"""
+    if (subsequentAction.isNotEmpty()) result += """subsequentAction=$subsequentAction"""
     return result.joinToString(prefix = "RetrieveDataAction{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
     key: String = this.key,
     value_: String = this.value_,
-    subsequent_action: List<Action> = this.subsequent_action,
+    subsequentAction: List<Action> = this.subsequentAction,
     unknownFields: ByteString = this.unknownFields,
-  ): RetrieveDataAction = RetrieveDataAction(key, value_, subsequent_action, unknownFields)
+  ): RetrieveDataAction = RetrieveDataAction(key, value_, subsequentAction, unknownFields)
 
   public companion object {
     @JvmField
@@ -116,20 +114,20 @@ public class RetrieveDataAction(
         var size = value.unknownFields.size
         if (value.key != "") size += ProtoAdapter.STRING.encodedSizeWithTag(1, value.key)
         if (value.value_ != "") size += ProtoAdapter.STRING.encodedSizeWithTag(2, value.value_)
-        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(3, value.subsequent_action)
+        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(3, value.subsequentAction)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: RetrieveDataAction): Unit {
         if (value.key != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.key)
         if (value.value_ != "") ProtoAdapter.STRING.encodeWithTag(writer, 2, value.value_)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.subsequent_action)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.subsequentAction)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: RetrieveDataAction): Unit {
         writer.writeBytes(value.unknownFields)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.subsequent_action)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.subsequentAction)
         if (value.value_ != "") ProtoAdapter.STRING.encodeWithTag(writer, 2, value.value_)
         if (value.key != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.key)
       }
@@ -137,25 +135,25 @@ public class RetrieveDataAction(
       public override fun decode(reader: ProtoReader): RetrieveDataAction {
         var key: String = ""
         var value_: String = ""
-        val subsequent_action = mutableListOf<Action>()
+        val subsequentAction = mutableListOf<Action>()
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> key = ProtoAdapter.STRING.decode(reader)
             2 -> value_ = ProtoAdapter.STRING.decode(reader)
-            3 -> subsequent_action.add(Action.ADAPTER.decode(reader))
+            3 -> subsequentAction.add(Action.ADAPTER.decode(reader))
             else -> reader.readUnknownField(tag)
           }
         }
         return RetrieveDataAction(
           key = key,
           value_ = value_,
-          subsequent_action = subsequent_action,
+          subsequentAction = subsequentAction,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: RetrieveDataAction): RetrieveDataAction = value.copy(
-        subsequent_action = value.subsequent_action.redactElements(Action.ADAPTER),
+        subsequentAction = value.subsequentAction.redactElements(Action.ADAPTER),
         unknownFields = ByteString.EMPTY
       )
     }

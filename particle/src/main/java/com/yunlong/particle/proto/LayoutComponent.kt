@@ -40,62 +40,76 @@ import okio.ByteString
 public class LayoutComponent(
   @field:WireField(
     tag = 1,
+    adapter = "com.yunlong.particle.proto.NavGraphComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val navGraph: NavGraphComponent? = null,
+  @field:WireField(
+    tag = 2,
+    adapter = "com.yunlong.particle.proto.ScreenComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val screen: ScreenComponent? = null,
+  @field:WireField(
+    tag = 3,
+    adapter = "com.yunlong.particle.proto.TopBarComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val topBar: TopBarComponent? = null,
+  @field:WireField(
+    tag = 4,
+    adapter = "com.yunlong.particle.proto.BottomBarComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val bottomBar: BottomBarComponent? = null,
+  @field:WireField(
+    tag = 5,
+    adapter = "com.yunlong.particle.proto.ModalDrawerComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val modalDrawer: ModalDrawerComponent? = null,
+  @field:WireField(
+    tag = 6,
     adapter = "com.yunlong.particle.proto.RowComponent#ADAPTER",
     oneofName = "component",
   )
   public val row: RowComponent? = null,
   @field:WireField(
-    tag = 2,
+    tag = 7,
     adapter = "com.yunlong.particle.proto.ColumnComponent#ADAPTER",
     oneofName = "component",
   )
   public val column: ColumnComponent? = null,
   @field:WireField(
-    tag = 3,
+    tag = 8,
     adapter = "com.yunlong.particle.proto.BoxComponent#ADAPTER",
     oneofName = "component",
   )
   public val box: BoxComponent? = null,
   @field:WireField(
-    tag = 4,
+    tag = 9,
     adapter = "com.yunlong.particle.proto.LazyColumnComponent#ADAPTER",
-    jsonName = "lazyColumn",
     oneofName = "component",
   )
-  public val lazy_column: LazyColumnComponent? = null,
+  public val lazyColumn: LazyColumnComponent? = null,
   @field:WireField(
-    tag = 5,
+    tag = 10,
     adapter = "com.yunlong.particle.proto.LazyRowComponent#ADAPTER",
-    jsonName = "lazyRow",
     oneofName = "component",
   )
-  public val lazy_row: LazyRowComponent? = null,
+  public val lazyRow: LazyRowComponent? = null,
   @field:WireField(
-    tag = 6,
+    tag = 11,
     adapter = "com.yunlong.particle.proto.TabViewComponent#ADAPTER",
-    jsonName = "tabView",
     oneofName = "component",
   )
-  public val tab_view: TabViewComponent? = null,
-  @field:WireField(
-    tag = 7,
-    adapter = "com.yunlong.particle.proto.NavigationViewComponent#ADAPTER",
-    jsonName = "navigationView",
-    oneofName = "component",
-  )
-  public val navigation_view: NavigationViewComponent? = null,
-  @field:WireField(
-    tag = 8,
-    adapter = "com.yunlong.particle.proto.Destination#ADAPTER",
-    oneofName = "component",
-  )
-  public val destination: Destination? = null,
+  public val tabView: TabViewComponent? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<LayoutComponent, Nothing>(ADAPTER, unknownFields) {
   init {
-    require(countNonNull(row, column, box, lazy_column, lazy_row, tab_view, navigation_view,
-        destination) <= 1) {
-      "At most one of row, column, box, lazy_column, lazy_row, tab_view, navigation_view, destination may be non-null"
+    require(countNonNull(navGraph, screen, topBar, bottomBar, modalDrawer, row, column, box,
+        lazyColumn, lazyRow, tabView) <= 1) {
+      "At most one of navGraph, screen, topBar, bottomBar, modalDrawer, row, column, box, lazyColumn, lazyRow, tabView may be non-null"
     }
   }
 
@@ -110,14 +124,17 @@ public class LayoutComponent(
     if (other === this) return true
     if (other !is LayoutComponent) return false
     if (unknownFields != other.unknownFields) return false
+    if (navGraph != other.navGraph) return false
+    if (screen != other.screen) return false
+    if (topBar != other.topBar) return false
+    if (bottomBar != other.bottomBar) return false
+    if (modalDrawer != other.modalDrawer) return false
     if (row != other.row) return false
     if (column != other.column) return false
     if (box != other.box) return false
-    if (lazy_column != other.lazy_column) return false
-    if (lazy_row != other.lazy_row) return false
-    if (tab_view != other.tab_view) return false
-    if (navigation_view != other.navigation_view) return false
-    if (destination != other.destination) return false
+    if (lazyColumn != other.lazyColumn) return false
+    if (lazyRow != other.lazyRow) return false
+    if (tabView != other.tabView) return false
     return true
   }
 
@@ -125,14 +142,17 @@ public class LayoutComponent(
     var result = super.hashCode
     if (result == 0) {
       result = unknownFields.hashCode()
+      result = result * 37 + (navGraph?.hashCode() ?: 0)
+      result = result * 37 + (screen?.hashCode() ?: 0)
+      result = result * 37 + (topBar?.hashCode() ?: 0)
+      result = result * 37 + (bottomBar?.hashCode() ?: 0)
+      result = result * 37 + (modalDrawer?.hashCode() ?: 0)
       result = result * 37 + (row?.hashCode() ?: 0)
       result = result * 37 + (column?.hashCode() ?: 0)
       result = result * 37 + (box?.hashCode() ?: 0)
-      result = result * 37 + (lazy_column?.hashCode() ?: 0)
-      result = result * 37 + (lazy_row?.hashCode() ?: 0)
-      result = result * 37 + (tab_view?.hashCode() ?: 0)
-      result = result * 37 + (navigation_view?.hashCode() ?: 0)
-      result = result * 37 + (destination?.hashCode() ?: 0)
+      result = result * 37 + (lazyColumn?.hashCode() ?: 0)
+      result = result * 37 + (lazyRow?.hashCode() ?: 0)
+      result = result * 37 + (tabView?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -140,29 +160,35 @@ public class LayoutComponent(
 
   public override fun toString(): String {
     val result = mutableListOf<String>()
+    if (navGraph != null) result += """navGraph=$navGraph"""
+    if (screen != null) result += """screen=$screen"""
+    if (topBar != null) result += """topBar=$topBar"""
+    if (bottomBar != null) result += """bottomBar=$bottomBar"""
+    if (modalDrawer != null) result += """modalDrawer=$modalDrawer"""
     if (row != null) result += """row=$row"""
     if (column != null) result += """column=$column"""
     if (box != null) result += """box=$box"""
-    if (lazy_column != null) result += """lazy_column=$lazy_column"""
-    if (lazy_row != null) result += """lazy_row=$lazy_row"""
-    if (tab_view != null) result += """tab_view=$tab_view"""
-    if (navigation_view != null) result += """navigation_view=$navigation_view"""
-    if (destination != null) result += """destination=$destination"""
+    if (lazyColumn != null) result += """lazyColumn=$lazyColumn"""
+    if (lazyRow != null) result += """lazyRow=$lazyRow"""
+    if (tabView != null) result += """tabView=$tabView"""
     return result.joinToString(prefix = "LayoutComponent{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
+    navGraph: NavGraphComponent? = this.navGraph,
+    screen: ScreenComponent? = this.screen,
+    topBar: TopBarComponent? = this.topBar,
+    bottomBar: BottomBarComponent? = this.bottomBar,
+    modalDrawer: ModalDrawerComponent? = this.modalDrawer,
     row: RowComponent? = this.row,
     column: ColumnComponent? = this.column,
     box: BoxComponent? = this.box,
-    lazy_column: LazyColumnComponent? = this.lazy_column,
-    lazy_row: LazyRowComponent? = this.lazy_row,
-    tab_view: TabViewComponent? = this.tab_view,
-    navigation_view: NavigationViewComponent? = this.navigation_view,
-    destination: Destination? = this.destination,
+    lazyColumn: LazyColumnComponent? = this.lazyColumn,
+    lazyRow: LazyRowComponent? = this.lazyRow,
+    tabView: TabViewComponent? = this.tabView,
     unknownFields: ByteString = this.unknownFields,
-  ): LayoutComponent = LayoutComponent(row, column, box, lazy_column, lazy_row, tab_view,
-      navigation_view, destination, unknownFields)
+  ): LayoutComponent = LayoutComponent(navGraph, screen, topBar, bottomBar, modalDrawer, row,
+      column, box, lazyColumn, lazyRow, tabView, unknownFields)
 
   public companion object {
     @JvmField
@@ -176,85 +202,106 @@ public class LayoutComponent(
     ) {
       public override fun encodedSize(`value`: LayoutComponent): Int {
         var size = value.unknownFields.size
-        size += RowComponent.ADAPTER.encodedSizeWithTag(1, value.row)
-        size += ColumnComponent.ADAPTER.encodedSizeWithTag(2, value.column)
-        size += BoxComponent.ADAPTER.encodedSizeWithTag(3, value.box)
-        size += LazyColumnComponent.ADAPTER.encodedSizeWithTag(4, value.lazy_column)
-        size += LazyRowComponent.ADAPTER.encodedSizeWithTag(5, value.lazy_row)
-        size += TabViewComponent.ADAPTER.encodedSizeWithTag(6, value.tab_view)
-        size += NavigationViewComponent.ADAPTER.encodedSizeWithTag(7, value.navigation_view)
-        size += Destination.ADAPTER.encodedSizeWithTag(8, value.destination)
+        size += NavGraphComponent.ADAPTER.encodedSizeWithTag(1, value.navGraph)
+        size += ScreenComponent.ADAPTER.encodedSizeWithTag(2, value.screen)
+        size += TopBarComponent.ADAPTER.encodedSizeWithTag(3, value.topBar)
+        size += BottomBarComponent.ADAPTER.encodedSizeWithTag(4, value.bottomBar)
+        size += ModalDrawerComponent.ADAPTER.encodedSizeWithTag(5, value.modalDrawer)
+        size += RowComponent.ADAPTER.encodedSizeWithTag(6, value.row)
+        size += ColumnComponent.ADAPTER.encodedSizeWithTag(7, value.column)
+        size += BoxComponent.ADAPTER.encodedSizeWithTag(8, value.box)
+        size += LazyColumnComponent.ADAPTER.encodedSizeWithTag(9, value.lazyColumn)
+        size += LazyRowComponent.ADAPTER.encodedSizeWithTag(10, value.lazyRow)
+        size += TabViewComponent.ADAPTER.encodedSizeWithTag(11, value.tabView)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: LayoutComponent): Unit {
-        RowComponent.ADAPTER.encodeWithTag(writer, 1, value.row)
-        ColumnComponent.ADAPTER.encodeWithTag(writer, 2, value.column)
-        BoxComponent.ADAPTER.encodeWithTag(writer, 3, value.box)
-        LazyColumnComponent.ADAPTER.encodeWithTag(writer, 4, value.lazy_column)
-        LazyRowComponent.ADAPTER.encodeWithTag(writer, 5, value.lazy_row)
-        TabViewComponent.ADAPTER.encodeWithTag(writer, 6, value.tab_view)
-        NavigationViewComponent.ADAPTER.encodeWithTag(writer, 7, value.navigation_view)
-        Destination.ADAPTER.encodeWithTag(writer, 8, value.destination)
+        NavGraphComponent.ADAPTER.encodeWithTag(writer, 1, value.navGraph)
+        ScreenComponent.ADAPTER.encodeWithTag(writer, 2, value.screen)
+        TopBarComponent.ADAPTER.encodeWithTag(writer, 3, value.topBar)
+        BottomBarComponent.ADAPTER.encodeWithTag(writer, 4, value.bottomBar)
+        ModalDrawerComponent.ADAPTER.encodeWithTag(writer, 5, value.modalDrawer)
+        RowComponent.ADAPTER.encodeWithTag(writer, 6, value.row)
+        ColumnComponent.ADAPTER.encodeWithTag(writer, 7, value.column)
+        BoxComponent.ADAPTER.encodeWithTag(writer, 8, value.box)
+        LazyColumnComponent.ADAPTER.encodeWithTag(writer, 9, value.lazyColumn)
+        LazyRowComponent.ADAPTER.encodeWithTag(writer, 10, value.lazyRow)
+        TabViewComponent.ADAPTER.encodeWithTag(writer, 11, value.tabView)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: LayoutComponent): Unit {
         writer.writeBytes(value.unknownFields)
-        Destination.ADAPTER.encodeWithTag(writer, 8, value.destination)
-        NavigationViewComponent.ADAPTER.encodeWithTag(writer, 7, value.navigation_view)
-        TabViewComponent.ADAPTER.encodeWithTag(writer, 6, value.tab_view)
-        LazyRowComponent.ADAPTER.encodeWithTag(writer, 5, value.lazy_row)
-        LazyColumnComponent.ADAPTER.encodeWithTag(writer, 4, value.lazy_column)
-        BoxComponent.ADAPTER.encodeWithTag(writer, 3, value.box)
-        ColumnComponent.ADAPTER.encodeWithTag(writer, 2, value.column)
-        RowComponent.ADAPTER.encodeWithTag(writer, 1, value.row)
+        TabViewComponent.ADAPTER.encodeWithTag(writer, 11, value.tabView)
+        LazyRowComponent.ADAPTER.encodeWithTag(writer, 10, value.lazyRow)
+        LazyColumnComponent.ADAPTER.encodeWithTag(writer, 9, value.lazyColumn)
+        BoxComponent.ADAPTER.encodeWithTag(writer, 8, value.box)
+        ColumnComponent.ADAPTER.encodeWithTag(writer, 7, value.column)
+        RowComponent.ADAPTER.encodeWithTag(writer, 6, value.row)
+        ModalDrawerComponent.ADAPTER.encodeWithTag(writer, 5, value.modalDrawer)
+        BottomBarComponent.ADAPTER.encodeWithTag(writer, 4, value.bottomBar)
+        TopBarComponent.ADAPTER.encodeWithTag(writer, 3, value.topBar)
+        ScreenComponent.ADAPTER.encodeWithTag(writer, 2, value.screen)
+        NavGraphComponent.ADAPTER.encodeWithTag(writer, 1, value.navGraph)
       }
 
       public override fun decode(reader: ProtoReader): LayoutComponent {
+        var navGraph: NavGraphComponent? = null
+        var screen: ScreenComponent? = null
+        var topBar: TopBarComponent? = null
+        var bottomBar: BottomBarComponent? = null
+        var modalDrawer: ModalDrawerComponent? = null
         var row: RowComponent? = null
         var column: ColumnComponent? = null
         var box: BoxComponent? = null
-        var lazy_column: LazyColumnComponent? = null
-        var lazy_row: LazyRowComponent? = null
-        var tab_view: TabViewComponent? = null
-        var navigation_view: NavigationViewComponent? = null
-        var destination: Destination? = null
+        var lazyColumn: LazyColumnComponent? = null
+        var lazyRow: LazyRowComponent? = null
+        var tabView: TabViewComponent? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
-            1 -> row = RowComponent.ADAPTER.decode(reader)
-            2 -> column = ColumnComponent.ADAPTER.decode(reader)
-            3 -> box = BoxComponent.ADAPTER.decode(reader)
-            4 -> lazy_column = LazyColumnComponent.ADAPTER.decode(reader)
-            5 -> lazy_row = LazyRowComponent.ADAPTER.decode(reader)
-            6 -> tab_view = TabViewComponent.ADAPTER.decode(reader)
-            7 -> navigation_view = NavigationViewComponent.ADAPTER.decode(reader)
-            8 -> destination = Destination.ADAPTER.decode(reader)
+            1 -> navGraph = NavGraphComponent.ADAPTER.decode(reader)
+            2 -> screen = ScreenComponent.ADAPTER.decode(reader)
+            3 -> topBar = TopBarComponent.ADAPTER.decode(reader)
+            4 -> bottomBar = BottomBarComponent.ADAPTER.decode(reader)
+            5 -> modalDrawer = ModalDrawerComponent.ADAPTER.decode(reader)
+            6 -> row = RowComponent.ADAPTER.decode(reader)
+            7 -> column = ColumnComponent.ADAPTER.decode(reader)
+            8 -> box = BoxComponent.ADAPTER.decode(reader)
+            9 -> lazyColumn = LazyColumnComponent.ADAPTER.decode(reader)
+            10 -> lazyRow = LazyRowComponent.ADAPTER.decode(reader)
+            11 -> tabView = TabViewComponent.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
         return LayoutComponent(
+          navGraph = navGraph,
+          screen = screen,
+          topBar = topBar,
+          bottomBar = bottomBar,
+          modalDrawer = modalDrawer,
           row = row,
           column = column,
           box = box,
-          lazy_column = lazy_column,
-          lazy_row = lazy_row,
-          tab_view = tab_view,
-          navigation_view = navigation_view,
-          destination = destination,
+          lazyColumn = lazyColumn,
+          lazyRow = lazyRow,
+          tabView = tabView,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: LayoutComponent): LayoutComponent = value.copy(
+        navGraph = value.navGraph?.let(NavGraphComponent.ADAPTER::redact),
+        screen = value.screen?.let(ScreenComponent.ADAPTER::redact),
+        topBar = value.topBar?.let(TopBarComponent.ADAPTER::redact),
+        bottomBar = value.bottomBar?.let(BottomBarComponent.ADAPTER::redact),
+        modalDrawer = value.modalDrawer?.let(ModalDrawerComponent.ADAPTER::redact),
         row = value.row?.let(RowComponent.ADAPTER::redact),
         column = value.column?.let(ColumnComponent.ADAPTER::redact),
         box = value.box?.let(BoxComponent.ADAPTER::redact),
-        lazy_column = value.lazy_column?.let(LazyColumnComponent.ADAPTER::redact),
-        lazy_row = value.lazy_row?.let(LazyRowComponent.ADAPTER::redact),
-        tab_view = value.tab_view?.let(TabViewComponent.ADAPTER::redact),
-        navigation_view = value.navigation_view?.let(NavigationViewComponent.ADAPTER::redact),
-        destination = value.destination?.let(Destination.ADAPTER::redact),
+        lazyColumn = value.lazyColumn?.let(LazyColumnComponent.ADAPTER::redact),
+        lazyRow = value.lazyRow?.let(LazyRowComponent.ADAPTER::redact),
+        tabView = value.tabView?.let(TabViewComponent.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

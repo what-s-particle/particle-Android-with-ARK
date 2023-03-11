@@ -47,8 +47,8 @@ public class SendHttpRequestAction(
   )
   public val type: RequestType = RequestType.GET,
   body: Map<String, String> = emptyMap(),
-  success_actions: List<Action> = emptyList(),
-  failure_actions: List<Action> = emptyList(),
+  successActions: List<Action> = emptyList(),
+  failureActions: List<Action> = emptyList(),
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<SendHttpRequestAction, Nothing>(ADAPTER, unknownFields) {
   @field:WireField(
@@ -62,17 +62,15 @@ public class SendHttpRequestAction(
     tag = 4,
     adapter = "com.yunlong.particle.proto.Action#ADAPTER",
     label = WireField.Label.REPEATED,
-    jsonName = "successActions",
   )
-  public val success_actions: List<Action> = immutableCopyOf("success_actions", success_actions)
+  public val successActions: List<Action> = immutableCopyOf("successActions", successActions)
 
   @field:WireField(
     tag = 5,
     adapter = "com.yunlong.particle.proto.Action#ADAPTER",
     label = WireField.Label.REPEATED,
-    jsonName = "failureActions",
   )
-  public val failure_actions: List<Action> = immutableCopyOf("failure_actions", failure_actions)
+  public val failureActions: List<Action> = immutableCopyOf("failureActions", failureActions)
 
   @Deprecated(
     message = "Shouldn't be used in Kotlin",
@@ -88,8 +86,8 @@ public class SendHttpRequestAction(
     if (endpoint != other.endpoint) return false
     if (type != other.type) return false
     if (body != other.body) return false
-    if (success_actions != other.success_actions) return false
-    if (failure_actions != other.failure_actions) return false
+    if (successActions != other.successActions) return false
+    if (failureActions != other.failureActions) return false
     return true
   }
 
@@ -100,8 +98,8 @@ public class SendHttpRequestAction(
       result = result * 37 + endpoint.hashCode()
       result = result * 37 + type.hashCode()
       result = result * 37 + body.hashCode()
-      result = result * 37 + success_actions.hashCode()
-      result = result * 37 + failure_actions.hashCode()
+      result = result * 37 + successActions.hashCode()
+      result = result * 37 + failureActions.hashCode()
       super.hashCode = result
     }
     return result
@@ -112,8 +110,8 @@ public class SendHttpRequestAction(
     result += """endpoint=${sanitize(endpoint)}"""
     result += """type=$type"""
     if (body.isNotEmpty()) result += """body=$body"""
-    if (success_actions.isNotEmpty()) result += """success_actions=$success_actions"""
-    if (failure_actions.isNotEmpty()) result += """failure_actions=$failure_actions"""
+    if (successActions.isNotEmpty()) result += """successActions=$successActions"""
+    if (failureActions.isNotEmpty()) result += """failureActions=$failureActions"""
     return result.joinToString(prefix = "SendHttpRequestAction{", separator = ", ", postfix = "}")
   }
 
@@ -121,11 +119,11 @@ public class SendHttpRequestAction(
     endpoint: String = this.endpoint,
     type: RequestType = this.type,
     body: Map<String, String> = this.body,
-    success_actions: List<Action> = this.success_actions,
-    failure_actions: List<Action> = this.failure_actions,
+    successActions: List<Action> = this.successActions,
+    failureActions: List<Action> = this.failureActions,
     unknownFields: ByteString = this.unknownFields,
-  ): SendHttpRequestAction = SendHttpRequestAction(endpoint, type, body, success_actions,
-      failure_actions, unknownFields)
+  ): SendHttpRequestAction = SendHttpRequestAction(endpoint, type, body, successActions,
+      failureActions, unknownFields)
 
   public companion object {
     @JvmField
@@ -147,8 +145,8 @@ public class SendHttpRequestAction(
         if (value.type != RequestType.GET) size += RequestType.ADAPTER.encodedSizeWithTag(2,
             value.type)
         size += bodyAdapter.encodedSizeWithTag(3, value.body)
-        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(4, value.success_actions)
-        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(5, value.failure_actions)
+        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(4, value.successActions)
+        size += Action.ADAPTER.asRepeated().encodedSizeWithTag(5, value.failureActions)
         return size
       }
 
@@ -156,15 +154,15 @@ public class SendHttpRequestAction(
         if (value.endpoint != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.endpoint)
         if (value.type != RequestType.GET) RequestType.ADAPTER.encodeWithTag(writer, 2, value.type)
         bodyAdapter.encodeWithTag(writer, 3, value.body)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 4, value.success_actions)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.failure_actions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 4, value.successActions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.failureActions)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: SendHttpRequestAction): Unit {
         writer.writeBytes(value.unknownFields)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.failure_actions)
-        Action.ADAPTER.asRepeated().encodeWithTag(writer, 4, value.success_actions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.failureActions)
+        Action.ADAPTER.asRepeated().encodeWithTag(writer, 4, value.successActions)
         bodyAdapter.encodeWithTag(writer, 3, value.body)
         if (value.type != RequestType.GET) RequestType.ADAPTER.encodeWithTag(writer, 2, value.type)
         if (value.endpoint != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.endpoint)
@@ -174,8 +172,8 @@ public class SendHttpRequestAction(
         var endpoint: String = ""
         var type: RequestType = RequestType.GET
         val body = mutableMapOf<String, String>()
-        val success_actions = mutableListOf<Action>()
-        val failure_actions = mutableListOf<Action>()
+        val successActions = mutableListOf<Action>()
+        val failureActions = mutableListOf<Action>()
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> endpoint = ProtoAdapter.STRING.decode(reader)
@@ -185,8 +183,8 @@ public class SendHttpRequestAction(
               reader.addUnknownField(tag, FieldEncoding.VARINT, e.value.toLong())
             }
             3 -> body.putAll(bodyAdapter.decode(reader))
-            4 -> success_actions.add(Action.ADAPTER.decode(reader))
-            5 -> failure_actions.add(Action.ADAPTER.decode(reader))
+            4 -> successActions.add(Action.ADAPTER.decode(reader))
+            5 -> failureActions.add(Action.ADAPTER.decode(reader))
             else -> reader.readUnknownField(tag)
           }
         }
@@ -194,16 +192,16 @@ public class SendHttpRequestAction(
           endpoint = endpoint,
           type = type,
           body = body,
-          success_actions = success_actions,
-          failure_actions = failure_actions,
+          successActions = successActions,
+          failureActions = failureActions,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: SendHttpRequestAction): SendHttpRequestAction =
           value.copy(
-        success_actions = value.success_actions.redactElements(Action.ADAPTER),
-        failure_actions = value.failure_actions.redactElements(Action.ADAPTER),
+        successActions = value.successActions.redactElements(Action.ADAPTER),
+        failureActions = value.failureActions.redactElements(Action.ADAPTER),
         unknownFields = ByteString.EMPTY
       )
     }

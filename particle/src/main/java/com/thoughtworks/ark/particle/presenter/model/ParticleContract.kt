@@ -1,6 +1,4 @@
-package com.thoughtworks.ark.particle
-
-import com.thoughtworks.ark.particle.presenter.model.ParticleAction
+package com.thoughtworks.ark.particle.presenter.model
 
 /**
  * the Contract plays a crucial role in defining the agreement (Contract) between the View and Presenter, thus promoting separation of concerns, loose coupling, testability, and other design principles.
@@ -14,9 +12,14 @@ State: Defines the state of the View, such as data loading, data loaded, data lo
 
  */
 class ParticleContract {
-    fun createContract(onAction: (ParticleAction) -> Unit): ParticleContract = apply {
-        this.onAction = onAction
-    }
+    lateinit var onAction: (Action) -> Unit
+    lateinit var onEvent: (Event) -> Unit
 
-    lateinit var onAction: (ParticleAction) -> Unit
+    fun createContract(
+        onAction: (Action) -> Unit,
+        onEvent: (Event) -> Unit
+    ): ParticleContract = apply {
+        this.onAction = onAction
+        this.onEvent = onEvent
+    }
 }
