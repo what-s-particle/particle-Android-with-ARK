@@ -2,147 +2,133 @@
 // Source: com.yunlong.particle.proto.IconComponent in generate/particle.proto
 package com.yunlong.particle.proto
 
-import android.os.Parcelable
-import com.squareup.wire.AndroidMessage
-import com.squareup.wire.FieldEncoding
+import com.squareup.wire.EnumAdapter
 import com.squareup.wire.ProtoAdapter
-import com.squareup.wire.ProtoReader
-import com.squareup.wire.ProtoWriter
-import com.squareup.wire.ReverseProtoWriter
 import com.squareup.wire.Syntax.PROTO_3
-import com.squareup.wire.WireField
-import com.squareup.wire.`internal`.sanitize
-import kotlin.Any
-import kotlin.AssertionError
-import kotlin.Boolean
-import kotlin.Deprecated
-import kotlin.DeprecationLevel
+import com.squareup.wire.WireEnum
 import kotlin.Int
-import kotlin.Long
-import kotlin.Nothing
-import kotlin.String
-import kotlin.Unit
 import kotlin.jvm.JvmField
-import okio.ByteString
+import kotlin.jvm.JvmStatic
 
 /**
- * Image Element used to display an icon
+ * Element used to display an System Icon
  */
-public class IconComponent(
-  @field:WireField(
-    tag = 1,
-    adapter = "com.yunlong.particle.proto.SymbolToken#ADAPTER",
-    label = WireField.Label.OMIT_IDENTITY,
-  )
-  public val symbol: SymbolToken = SymbolToken.XXX,
-  @field:WireField(
-    tag = 2,
-    adapter = "com.squareup.wire.ProtoAdapter#STRING",
-  )
-  public val description: String? = null,
-  unknownFields: ByteString = ByteString.EMPTY,
-) : AndroidMessage<IconComponent, Nothing>(ADAPTER, unknownFields) {
-  @Deprecated(
-    message = "Shouldn't be used in Kotlin",
-    level = DeprecationLevel.HIDDEN,
-  )
-  public override fun newBuilder(): Nothing = throw
-      AssertionError("Builders are deprecated and only available in a javaInterop build; see https://square.github.io/wire/wire_compiler/#kotlin")
-
-  public override fun equals(other: Any?): Boolean {
-    if (other === this) return true
-    if (other !is IconComponent) return false
-    if (unknownFields != other.unknownFields) return false
-    if (symbol != other.symbol) return false
-    if (description != other.description) return false
-    return true
-  }
-
-  public override fun hashCode(): Int {
-    var result = super.hashCode
-    if (result == 0) {
-      result = unknownFields.hashCode()
-      result = result * 37 + symbol.hashCode()
-      result = result * 37 + (description?.hashCode() ?: 0)
-      super.hashCode = result
-    }
-    return result
-  }
-
-  public override fun toString(): String {
-    val result = mutableListOf<String>()
-    result += """symbol=$symbol"""
-    if (description != null) result += """description=${sanitize(description)}"""
-    return result.joinToString(prefix = "IconComponent{", separator = ", ", postfix = "}")
-  }
-
-  public fun copy(
-    symbol: SymbolToken = this.symbol,
-    description: String? = this.description,
-    unknownFields: ByteString = this.unknownFields,
-  ): IconComponent = IconComponent(symbol, description, unknownFields)
+public enum class IconComponent(
+  public override val `value`: Int,
+) : WireEnum {
+  DEFAULT_ACCOUNT_BOX(0),
+  DEFAULT_ACCOUNT_CIRCLE(1),
+  DEFAULT_ADD_CIRCLE(2),
+  DEFAULT_ADD(3),
+  DEFAULT_ARROW_BACK(4),
+  DEFAULT_ARROW_DROP_DOWN(5),
+  DEFAULT_ARROW_FORWARD(6),
+  DEFAULT_BUILD(7),
+  DEFAULT_CALL(8),
+  DEFAULT_CHECK_CIRCLE(9),
+  DEFAULT_CHECK(10),
+  DEFAULT_CLEAR(11),
+  DEFAULT_CLOSE(12),
+  DEFAULT_CREATE(13),
+  DEFAULT_DATE_RANGE(14),
+  DEFAULT_DELETE(15),
+  DEFAULT_DONE(16),
+  DEFAULT_EDIT(17),
+  DEFAULT_EMAIL(18),
+  DEFAULT_EXIT_TO_APP(19),
+  DEFAULT_FACE(20),
+  DEFAULT_FAVORITE_BORDER(21),
+  DEFAULT_FAVORITE(22),
+  DEFAULT_HOME(23),
+  DEFAULT_INFO(24),
+  DEFAULT_KEYBOARD_ARROW_DOWN(25),
+  DEFAULT_KEYBOARD_ARROW_LEFT(26),
+  DEFAULT_KEYBOARD_ARROW_RIGHT(27),
+  DEFAULT_KEYBOARD_ARROW_UP(28),
+  DEFAULT_LIST(29),
+  DEFAULT_LOCATION_ON(30),
+  DEFAULT_LOCK(31),
+  DEFAULT_MAIL_OUTLINE(32),
+  DEFAULT_MENU(33),
+  DEFAULT_MOR_EVERT(34),
+  DEFAULT_NOTIFICATIONS(35),
+  DEFAULT_PERSON(36),
+  DEFAULT_PHONE(37),
+  DEFAULT_PLACE(38),
+  DEFAULT_PLAY_ARROW(39),
+  DEFAULT_REFRESH(40),
+  DEFAULT_SEARCH(41),
+  DEFAULT_SEND(42),
+  DEFAULT_SETTINGS(43),
+  DEFAULT_SHARE(44),
+  DEFAULT_SHOPPINGCART(45),
+  DEFAULT_STAR(46),
+  DEFAULT_THUMBUP(47),
+  DEFAULT_WARNING(48),
+  ;
 
   public companion object {
     @JvmField
-    public val ADAPTER: ProtoAdapter<IconComponent> = object : ProtoAdapter<IconComponent>(
-      FieldEncoding.LENGTH_DELIMITED, 
+    public val ADAPTER: ProtoAdapter<IconComponent> = object : EnumAdapter<IconComponent>(
       IconComponent::class, 
-      "type.googleapis.com/com.yunlong.particle.proto.IconComponent", 
       PROTO_3, 
-      null, 
-      "generate/particle.proto"
+      IconComponent.DEFAULT_ACCOUNT_BOX
     ) {
-      public override fun encodedSize(`value`: IconComponent): Int {
-        var size = value.unknownFields.size
-        if (value.symbol != SymbolToken.XXX) size += SymbolToken.ADAPTER.encodedSizeWithTag(1,
-            value.symbol)
-        size += ProtoAdapter.STRING.encodedSizeWithTag(2, value.description)
-        return size
-      }
-
-      public override fun encode(writer: ProtoWriter, `value`: IconComponent): Unit {
-        if (value.symbol != SymbolToken.XXX) SymbolToken.ADAPTER.encodeWithTag(writer, 1,
-            value.symbol)
-        ProtoAdapter.STRING.encodeWithTag(writer, 2, value.description)
-        writer.writeBytes(value.unknownFields)
-      }
-
-      public override fun encode(writer: ReverseProtoWriter, `value`: IconComponent): Unit {
-        writer.writeBytes(value.unknownFields)
-        ProtoAdapter.STRING.encodeWithTag(writer, 2, value.description)
-        if (value.symbol != SymbolToken.XXX) SymbolToken.ADAPTER.encodeWithTag(writer, 1,
-            value.symbol)
-      }
-
-      public override fun decode(reader: ProtoReader): IconComponent {
-        var symbol: SymbolToken = SymbolToken.XXX
-        var description: String? = null
-        val unknownFields = reader.forEachTag { tag ->
-          when (tag) {
-            1 -> try {
-              symbol = SymbolToken.ADAPTER.decode(reader)
-            } catch (e: ProtoAdapter.EnumConstantNotFoundException) {
-              reader.addUnknownField(tag, FieldEncoding.VARINT, e.value.toLong())
-            }
-            2 -> description = ProtoAdapter.STRING.decode(reader)
-            else -> reader.readUnknownField(tag)
-          }
-        }
-        return IconComponent(
-          symbol = symbol,
-          description = description,
-          unknownFields = unknownFields
-        )
-      }
-
-      public override fun redact(`value`: IconComponent): IconComponent = value.copy(
-        unknownFields = ByteString.EMPTY
-      )
+      public override fun fromValue(`value`: Int): IconComponent? = IconComponent.fromValue(value)
     }
 
-    @JvmField
-    public val CREATOR: Parcelable.Creator<IconComponent> = AndroidMessage.newCreator(ADAPTER)
-
-    private const val serialVersionUID: Long = 0L
+    @JvmStatic
+    public fun fromValue(`value`: Int): IconComponent? = when (value) {
+      0 -> DEFAULT_ACCOUNT_BOX
+      1 -> DEFAULT_ACCOUNT_CIRCLE
+      2 -> DEFAULT_ADD_CIRCLE
+      3 -> DEFAULT_ADD
+      4 -> DEFAULT_ARROW_BACK
+      5 -> DEFAULT_ARROW_DROP_DOWN
+      6 -> DEFAULT_ARROW_FORWARD
+      7 -> DEFAULT_BUILD
+      8 -> DEFAULT_CALL
+      9 -> DEFAULT_CHECK_CIRCLE
+      10 -> DEFAULT_CHECK
+      11 -> DEFAULT_CLEAR
+      12 -> DEFAULT_CLOSE
+      13 -> DEFAULT_CREATE
+      14 -> DEFAULT_DATE_RANGE
+      15 -> DEFAULT_DELETE
+      16 -> DEFAULT_DONE
+      17 -> DEFAULT_EDIT
+      18 -> DEFAULT_EMAIL
+      19 -> DEFAULT_EXIT_TO_APP
+      20 -> DEFAULT_FACE
+      21 -> DEFAULT_FAVORITE_BORDER
+      22 -> DEFAULT_FAVORITE
+      23 -> DEFAULT_HOME
+      24 -> DEFAULT_INFO
+      25 -> DEFAULT_KEYBOARD_ARROW_DOWN
+      26 -> DEFAULT_KEYBOARD_ARROW_LEFT
+      27 -> DEFAULT_KEYBOARD_ARROW_RIGHT
+      28 -> DEFAULT_KEYBOARD_ARROW_UP
+      29 -> DEFAULT_LIST
+      30 -> DEFAULT_LOCATION_ON
+      31 -> DEFAULT_LOCK
+      32 -> DEFAULT_MAIL_OUTLINE
+      33 -> DEFAULT_MENU
+      34 -> DEFAULT_MOR_EVERT
+      35 -> DEFAULT_NOTIFICATIONS
+      36 -> DEFAULT_PERSON
+      37 -> DEFAULT_PHONE
+      38 -> DEFAULT_PLACE
+      39 -> DEFAULT_PLAY_ARROW
+      40 -> DEFAULT_REFRESH
+      41 -> DEFAULT_SEARCH
+      42 -> DEFAULT_SEND
+      43 -> DEFAULT_SETTINGS
+      44 -> DEFAULT_SHARE
+      45 -> DEFAULT_SHOPPINGCART
+      46 -> DEFAULT_STAR
+      47 -> DEFAULT_THUMBUP
+      48 -> DEFAULT_WARNING
+      else -> null
+    }
   }
 }

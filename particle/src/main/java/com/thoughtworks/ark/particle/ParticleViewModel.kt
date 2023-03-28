@@ -17,10 +17,11 @@ class ParticleViewModel(private val repository: ParticleRepository) : ViewModel(
     private val _content: MutableStateFlow<Particle?> = MutableStateFlow(null)
     val content: StateFlow<Particle?> = _content
 
-    private val _event: MutableStateFlow<Event?> = MutableStateFlow(null)
-    val event: StateFlow<Event?> = _event
+    private val _action: MutableStateFlow<Action?> = MutableStateFlow(null)
+    val action: StateFlow<Action?> = _action
 
     val contract: ParticleContract by lazy {
+
         ParticleContract().createContract(
             ::onAction,
             ::onEvent,
@@ -43,12 +44,12 @@ class ParticleViewModel(private val repository: ParticleRepository) : ViewModel(
         }
     }
 
-    private fun onAction(particleAction: Action) {
-
+    private fun onAction(action: Action) = viewModelScope.launch {
+        _action.emit(action)
     }
 
-    private fun onEvent(event: Event) = viewModelScope.launch {
-        _event.emit(event)
+    private fun onEvent(event: Event) {
+
     }
 
 }
