@@ -38,34 +38,229 @@ public class Particle(
   public val id: String = "",
   @field:WireField(
     tag = 2,
-    adapter = "com.yunlong.particle.proto.ElementComponent#ADAPTER",
-    oneofName = "component",
-  )
-  public val element: ElementComponent? = null,
-  @field:WireField(
-    tag = 3,
-    adapter = "com.yunlong.particle.proto.LayoutComponent#ADAPTER",
-    oneofName = "component",
-  )
-  public val layout: LayoutComponent? = null,
-  @field:WireField(
-    tag = 4,
     adapter = "com.yunlong.particle.proto.Modifier#ADAPTER",
   )
   public val modifier: Modifier? = null,
   interactions: List<Interaction> = emptyList(),
+  /**
+   * Used to create a clickable button
+   */
+  @field:WireField(
+    tag = 10,
+    adapter = "com.yunlong.particle.proto.ButtonComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val button: ButtonComponent? = null,
+  /**
+   * Used to display text
+   */
+  @field:WireField(
+    tag = 11,
+    adapter = "com.yunlong.particle.proto.TextComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val label: TextComponent? = null,
+  /**
+   * Used to display an image
+   */
+  @field:WireField(
+    tag = 12,
+    adapter = "com.yunlong.particle.proto.ImageComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val image: ImageComponent? = null,
+  /**
+   * Used to create a text input field
+   */
+  @field:WireField(
+    tag = 13,
+    adapter = "com.yunlong.particle.proto.TextFieldComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val textField: TextFieldComponent? = null,
+  /**
+   * Used to create a multiline text input field
+   */
+  @field:WireField(
+    tag = 14,
+    adapter = "com.yunlong.particle.proto.TextEditorComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val textEditor: TextEditorComponent? = null,
+  /**
+   * Used to create a slider
+   */
+  @field:WireField(
+    tag = 15,
+    adapter = "com.yunlong.particle.proto.SliderComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val slider: SliderComponent? = null,
+  /**
+   * Used to create a switch toggle
+   */
+  @field:WireField(
+    tag = 16,
+    adapter = "com.yunlong.particle.proto.ToggleComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val toggle: ToggleComponent? = null,
+  /**
+   * Used to create a checkbox
+   */
+  @field:WireField(
+    tag = 17,
+    adapter = "com.yunlong.particle.proto.CheckBoxComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val checkbox: CheckBoxComponent? = null,
+  /**
+   * Used to create a radio button
+   */
+  @field:WireField(
+    tag = 18,
+    adapter = "com.yunlong.particle.proto.RadioButtonComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val radioButton: RadioButtonComponent? = null,
+  /**
+   * Used to create a dropdown list
+   */
+  @field:WireField(
+    tag = 19,
+    adapter = "com.yunlong.particle.proto.PickerComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val picker: PickerComponent? = null,
+  /**
+   * Used to create a icon
+   */
+  @field:WireField(
+    tag = 20,
+    adapter = "com.yunlong.particle.proto.IconComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val icon: IconComponent? = null,
+  /**
+   * Used to create a bottom bar
+   */
+  @field:WireField(
+    tag = 21,
+    adapter = "com.yunlong.particle.proto.BottomBarItemComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val bottomBarItem: BottomBarItemComponent? = null,
+  /**
+   * Used to create an alert dialog
+   */
+  @field:WireField(
+    tag = 22,
+    adapter = "com.yunlong.particle.proto.AlertComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val alert: AlertComponent? = null,
+  /**
+   * Used to create an action sheet
+   */
+  @field:WireField(
+    tag = 23,
+    adapter = "com.yunlong.particle.proto.ActionSheetComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val actionSheet: ActionSheetComponent? = null,
+  /**
+   *  Layout container types.
+   *  HStack: a horizontal stack layout container that contains child elements
+   *  VStack: a vertical stack layout container that contains child elements
+   *  ZStack: a Z-axis stack layout container that contains child elements
+   *  LazyColumn: a lazy column layout container that contains child elements
+   *  LazyRow: a lazy row layout container that contains child elements
+   *  TabView: a tab view layout container that contains child tabs
+   *  NavigationView: a navigation view layout container that contains child elements
+   *  NOTE: Each of the layout container types includes a repeated field called `elements` or
+   * `tabs`,
+   *  which contains the child elements or tabs within the container.
+   */
+  @field:WireField(
+    tag = 100,
+    adapter = "com.yunlong.particle.proto.NavGraphComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val navGraph: NavGraphComponent? = null,
+  @field:WireField(
+    tag = 101,
+    adapter = "com.yunlong.particle.proto.ScreenComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val screen: ScreenComponent? = null,
+  @field:WireField(
+    tag = 102,
+    adapter = "com.yunlong.particle.proto.TopBarComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val topBar: TopBarComponent? = null,
+  @field:WireField(
+    tag = 103,
+    adapter = "com.yunlong.particle.proto.BottomBarComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val bottomBar: BottomBarComponent? = null,
+  @field:WireField(
+    tag = 104,
+    adapter = "com.yunlong.particle.proto.ModalDrawerComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val modalDrawer: ModalDrawerComponent? = null,
+  @field:WireField(
+    tag = 105,
+    adapter = "com.yunlong.particle.proto.RowComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val row: RowComponent? = null,
+  @field:WireField(
+    tag = 106,
+    adapter = "com.yunlong.particle.proto.ColumnComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val column: ColumnComponent? = null,
+  @field:WireField(
+    tag = 107,
+    adapter = "com.yunlong.particle.proto.BoxComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val box: BoxComponent? = null,
+  @field:WireField(
+    tag = 108,
+    adapter = "com.yunlong.particle.proto.LazyColumnComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val lazyColumn: LazyColumnComponent? = null,
+  @field:WireField(
+    tag = 109,
+    adapter = "com.yunlong.particle.proto.LazyRowComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val lazyRow: LazyRowComponent? = null,
+  @field:WireField(
+    tag = 110,
+    adapter = "com.yunlong.particle.proto.TabViewComponent#ADAPTER",
+    oneofName = "component",
+  )
+  public val tabView: TabViewComponent? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<Particle, Nothing>(ADAPTER, unknownFields) {
   @field:WireField(
-    tag = 5,
+    tag = 3,
     adapter = "com.yunlong.particle.proto.Interaction#ADAPTER",
     label = WireField.Label.REPEATED,
   )
   public val interactions: List<Interaction> = immutableCopyOf("interactions", interactions)
 
   init {
-    require(countNonNull(element, layout) <= 1) {
-      "At most one of element, layout may be non-null"
+    require(countNonNull(button, label, image, textField, textEditor, slider, toggle, checkbox,
+        radioButton, picker, icon, bottomBarItem, alert, actionSheet, navGraph, screen, topBar,
+        bottomBar, modalDrawer, row, column, box, lazyColumn, lazyRow, tabView) <= 1) {
+      "At most one of button, label, image, textField, textEditor, slider, toggle, checkbox, radioButton, picker, icon, bottomBarItem, alert, actionSheet, navGraph, screen, topBar, bottomBar, modalDrawer, row, column, box, lazyColumn, lazyRow, tabView may be non-null"
     }
   }
 
@@ -81,10 +276,33 @@ public class Particle(
     if (other !is Particle) return false
     if (unknownFields != other.unknownFields) return false
     if (id != other.id) return false
-    if (element != other.element) return false
-    if (layout != other.layout) return false
     if (modifier != other.modifier) return false
     if (interactions != other.interactions) return false
+    if (button != other.button) return false
+    if (label != other.label) return false
+    if (image != other.image) return false
+    if (textField != other.textField) return false
+    if (textEditor != other.textEditor) return false
+    if (slider != other.slider) return false
+    if (toggle != other.toggle) return false
+    if (checkbox != other.checkbox) return false
+    if (radioButton != other.radioButton) return false
+    if (picker != other.picker) return false
+    if (icon != other.icon) return false
+    if (bottomBarItem != other.bottomBarItem) return false
+    if (alert != other.alert) return false
+    if (actionSheet != other.actionSheet) return false
+    if (navGraph != other.navGraph) return false
+    if (screen != other.screen) return false
+    if (topBar != other.topBar) return false
+    if (bottomBar != other.bottomBar) return false
+    if (modalDrawer != other.modalDrawer) return false
+    if (row != other.row) return false
+    if (column != other.column) return false
+    if (box != other.box) return false
+    if (lazyColumn != other.lazyColumn) return false
+    if (lazyRow != other.lazyRow) return false
+    if (tabView != other.tabView) return false
     return true
   }
 
@@ -93,10 +311,33 @@ public class Particle(
     if (result == 0) {
       result = unknownFields.hashCode()
       result = result * 37 + id.hashCode()
-      result = result * 37 + (element?.hashCode() ?: 0)
-      result = result * 37 + (layout?.hashCode() ?: 0)
       result = result * 37 + (modifier?.hashCode() ?: 0)
       result = result * 37 + interactions.hashCode()
+      result = result * 37 + (button?.hashCode() ?: 0)
+      result = result * 37 + (label?.hashCode() ?: 0)
+      result = result * 37 + (image?.hashCode() ?: 0)
+      result = result * 37 + (textField?.hashCode() ?: 0)
+      result = result * 37 + (textEditor?.hashCode() ?: 0)
+      result = result * 37 + (slider?.hashCode() ?: 0)
+      result = result * 37 + (toggle?.hashCode() ?: 0)
+      result = result * 37 + (checkbox?.hashCode() ?: 0)
+      result = result * 37 + (radioButton?.hashCode() ?: 0)
+      result = result * 37 + (picker?.hashCode() ?: 0)
+      result = result * 37 + (icon?.hashCode() ?: 0)
+      result = result * 37 + (bottomBarItem?.hashCode() ?: 0)
+      result = result * 37 + (alert?.hashCode() ?: 0)
+      result = result * 37 + (actionSheet?.hashCode() ?: 0)
+      result = result * 37 + (navGraph?.hashCode() ?: 0)
+      result = result * 37 + (screen?.hashCode() ?: 0)
+      result = result * 37 + (topBar?.hashCode() ?: 0)
+      result = result * 37 + (bottomBar?.hashCode() ?: 0)
+      result = result * 37 + (modalDrawer?.hashCode() ?: 0)
+      result = result * 37 + (row?.hashCode() ?: 0)
+      result = result * 37 + (column?.hashCode() ?: 0)
+      result = result * 37 + (box?.hashCode() ?: 0)
+      result = result * 37 + (lazyColumn?.hashCode() ?: 0)
+      result = result * 37 + (lazyRow?.hashCode() ?: 0)
+      result = result * 37 + (tabView?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -105,21 +346,70 @@ public class Particle(
   public override fun toString(): String {
     val result = mutableListOf<String>()
     result += """id=${sanitize(id)}"""
-    if (element != null) result += """element=$element"""
-    if (layout != null) result += """layout=$layout"""
     if (modifier != null) result += """modifier=$modifier"""
     if (interactions.isNotEmpty()) result += """interactions=$interactions"""
+    if (button != null) result += """button=$button"""
+    if (label != null) result += """label=$label"""
+    if (image != null) result += """image=$image"""
+    if (textField != null) result += """textField=$textField"""
+    if (textEditor != null) result += """textEditor=$textEditor"""
+    if (slider != null) result += """slider=$slider"""
+    if (toggle != null) result += """toggle=$toggle"""
+    if (checkbox != null) result += """checkbox=$checkbox"""
+    if (radioButton != null) result += """radioButton=$radioButton"""
+    if (picker != null) result += """picker=$picker"""
+    if (icon != null) result += """icon=$icon"""
+    if (bottomBarItem != null) result += """bottomBarItem=$bottomBarItem"""
+    if (alert != null) result += """alert=$alert"""
+    if (actionSheet != null) result += """actionSheet=$actionSheet"""
+    if (navGraph != null) result += """navGraph=$navGraph"""
+    if (screen != null) result += """screen=$screen"""
+    if (topBar != null) result += """topBar=$topBar"""
+    if (bottomBar != null) result += """bottomBar=$bottomBar"""
+    if (modalDrawer != null) result += """modalDrawer=$modalDrawer"""
+    if (row != null) result += """row=$row"""
+    if (column != null) result += """column=$column"""
+    if (box != null) result += """box=$box"""
+    if (lazyColumn != null) result += """lazyColumn=$lazyColumn"""
+    if (lazyRow != null) result += """lazyRow=$lazyRow"""
+    if (tabView != null) result += """tabView=$tabView"""
     return result.joinToString(prefix = "Particle{", separator = ", ", postfix = "}")
   }
 
   public fun copy(
     id: String = this.id,
-    element: ElementComponent? = this.element,
-    layout: LayoutComponent? = this.layout,
     modifier: Modifier? = this.modifier,
     interactions: List<Interaction> = this.interactions,
+    button: ButtonComponent? = this.button,
+    label: TextComponent? = this.label,
+    image: ImageComponent? = this.image,
+    textField: TextFieldComponent? = this.textField,
+    textEditor: TextEditorComponent? = this.textEditor,
+    slider: SliderComponent? = this.slider,
+    toggle: ToggleComponent? = this.toggle,
+    checkbox: CheckBoxComponent? = this.checkbox,
+    radioButton: RadioButtonComponent? = this.radioButton,
+    picker: PickerComponent? = this.picker,
+    icon: IconComponent? = this.icon,
+    bottomBarItem: BottomBarItemComponent? = this.bottomBarItem,
+    alert: AlertComponent? = this.alert,
+    actionSheet: ActionSheetComponent? = this.actionSheet,
+    navGraph: NavGraphComponent? = this.navGraph,
+    screen: ScreenComponent? = this.screen,
+    topBar: TopBarComponent? = this.topBar,
+    bottomBar: BottomBarComponent? = this.bottomBar,
+    modalDrawer: ModalDrawerComponent? = this.modalDrawer,
+    row: RowComponent? = this.row,
+    column: ColumnComponent? = this.column,
+    box: BoxComponent? = this.box,
+    lazyColumn: LazyColumnComponent? = this.lazyColumn,
+    lazyRow: LazyRowComponent? = this.lazyRow,
+    tabView: TabViewComponent? = this.tabView,
     unknownFields: ByteString = this.unknownFields,
-  ): Particle = Particle(id, element, layout, modifier, interactions, unknownFields)
+  ): Particle = Particle(id, modifier, interactions, button, label, image, textField, textEditor,
+      slider, toggle, checkbox, radioButton, picker, icon, bottomBarItem, alert, actionSheet,
+      navGraph, screen, topBar, bottomBar, modalDrawer, row, column, box, lazyColumn, lazyRow,
+      tabView, unknownFields)
 
   public companion object {
     @JvmField
@@ -134,62 +424,226 @@ public class Particle(
       public override fun encodedSize(`value`: Particle): Int {
         var size = value.unknownFields.size
         if (value.id != "") size += ProtoAdapter.STRING.encodedSizeWithTag(1, value.id)
-        size += ElementComponent.ADAPTER.encodedSizeWithTag(2, value.element)
-        size += LayoutComponent.ADAPTER.encodedSizeWithTag(3, value.layout)
-        size += Modifier.ADAPTER.encodedSizeWithTag(4, value.modifier)
-        size += Interaction.ADAPTER.asRepeated().encodedSizeWithTag(5, value.interactions)
+        size += Modifier.ADAPTER.encodedSizeWithTag(2, value.modifier)
+        size += Interaction.ADAPTER.asRepeated().encodedSizeWithTag(3, value.interactions)
+        size += ButtonComponent.ADAPTER.encodedSizeWithTag(10, value.button)
+        size += TextComponent.ADAPTER.encodedSizeWithTag(11, value.label)
+        size += ImageComponent.ADAPTER.encodedSizeWithTag(12, value.image)
+        size += TextFieldComponent.ADAPTER.encodedSizeWithTag(13, value.textField)
+        size += TextEditorComponent.ADAPTER.encodedSizeWithTag(14, value.textEditor)
+        size += SliderComponent.ADAPTER.encodedSizeWithTag(15, value.slider)
+        size += ToggleComponent.ADAPTER.encodedSizeWithTag(16, value.toggle)
+        size += CheckBoxComponent.ADAPTER.encodedSizeWithTag(17, value.checkbox)
+        size += RadioButtonComponent.ADAPTER.encodedSizeWithTag(18, value.radioButton)
+        size += PickerComponent.ADAPTER.encodedSizeWithTag(19, value.picker)
+        size += IconComponent.ADAPTER.encodedSizeWithTag(20, value.icon)
+        size += BottomBarItemComponent.ADAPTER.encodedSizeWithTag(21, value.bottomBarItem)
+        size += AlertComponent.ADAPTER.encodedSizeWithTag(22, value.alert)
+        size += ActionSheetComponent.ADAPTER.encodedSizeWithTag(23, value.actionSheet)
+        size += NavGraphComponent.ADAPTER.encodedSizeWithTag(100, value.navGraph)
+        size += ScreenComponent.ADAPTER.encodedSizeWithTag(101, value.screen)
+        size += TopBarComponent.ADAPTER.encodedSizeWithTag(102, value.topBar)
+        size += BottomBarComponent.ADAPTER.encodedSizeWithTag(103, value.bottomBar)
+        size += ModalDrawerComponent.ADAPTER.encodedSizeWithTag(104, value.modalDrawer)
+        size += RowComponent.ADAPTER.encodedSizeWithTag(105, value.row)
+        size += ColumnComponent.ADAPTER.encodedSizeWithTag(106, value.column)
+        size += BoxComponent.ADAPTER.encodedSizeWithTag(107, value.box)
+        size += LazyColumnComponent.ADAPTER.encodedSizeWithTag(108, value.lazyColumn)
+        size += LazyRowComponent.ADAPTER.encodedSizeWithTag(109, value.lazyRow)
+        size += TabViewComponent.ADAPTER.encodedSizeWithTag(110, value.tabView)
         return size
       }
 
       public override fun encode(writer: ProtoWriter, `value`: Particle): Unit {
         if (value.id != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.id)
-        Modifier.ADAPTER.encodeWithTag(writer, 4, value.modifier)
-        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.interactions)
-        ElementComponent.ADAPTER.encodeWithTag(writer, 2, value.element)
-        LayoutComponent.ADAPTER.encodeWithTag(writer, 3, value.layout)
+        Modifier.ADAPTER.encodeWithTag(writer, 2, value.modifier)
+        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.interactions)
+        ButtonComponent.ADAPTER.encodeWithTag(writer, 10, value.button)
+        TextComponent.ADAPTER.encodeWithTag(writer, 11, value.label)
+        ImageComponent.ADAPTER.encodeWithTag(writer, 12, value.image)
+        TextFieldComponent.ADAPTER.encodeWithTag(writer, 13, value.textField)
+        TextEditorComponent.ADAPTER.encodeWithTag(writer, 14, value.textEditor)
+        SliderComponent.ADAPTER.encodeWithTag(writer, 15, value.slider)
+        ToggleComponent.ADAPTER.encodeWithTag(writer, 16, value.toggle)
+        CheckBoxComponent.ADAPTER.encodeWithTag(writer, 17, value.checkbox)
+        RadioButtonComponent.ADAPTER.encodeWithTag(writer, 18, value.radioButton)
+        PickerComponent.ADAPTER.encodeWithTag(writer, 19, value.picker)
+        IconComponent.ADAPTER.encodeWithTag(writer, 20, value.icon)
+        BottomBarItemComponent.ADAPTER.encodeWithTag(writer, 21, value.bottomBarItem)
+        AlertComponent.ADAPTER.encodeWithTag(writer, 22, value.alert)
+        ActionSheetComponent.ADAPTER.encodeWithTag(writer, 23, value.actionSheet)
+        NavGraphComponent.ADAPTER.encodeWithTag(writer, 100, value.navGraph)
+        ScreenComponent.ADAPTER.encodeWithTag(writer, 101, value.screen)
+        TopBarComponent.ADAPTER.encodeWithTag(writer, 102, value.topBar)
+        BottomBarComponent.ADAPTER.encodeWithTag(writer, 103, value.bottomBar)
+        ModalDrawerComponent.ADAPTER.encodeWithTag(writer, 104, value.modalDrawer)
+        RowComponent.ADAPTER.encodeWithTag(writer, 105, value.row)
+        ColumnComponent.ADAPTER.encodeWithTag(writer, 106, value.column)
+        BoxComponent.ADAPTER.encodeWithTag(writer, 107, value.box)
+        LazyColumnComponent.ADAPTER.encodeWithTag(writer, 108, value.lazyColumn)
+        LazyRowComponent.ADAPTER.encodeWithTag(writer, 109, value.lazyRow)
+        TabViewComponent.ADAPTER.encodeWithTag(writer, 110, value.tabView)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: Particle): Unit {
         writer.writeBytes(value.unknownFields)
-        LayoutComponent.ADAPTER.encodeWithTag(writer, 3, value.layout)
-        ElementComponent.ADAPTER.encodeWithTag(writer, 2, value.element)
-        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 5, value.interactions)
-        Modifier.ADAPTER.encodeWithTag(writer, 4, value.modifier)
+        TabViewComponent.ADAPTER.encodeWithTag(writer, 110, value.tabView)
+        LazyRowComponent.ADAPTER.encodeWithTag(writer, 109, value.lazyRow)
+        LazyColumnComponent.ADAPTER.encodeWithTag(writer, 108, value.lazyColumn)
+        BoxComponent.ADAPTER.encodeWithTag(writer, 107, value.box)
+        ColumnComponent.ADAPTER.encodeWithTag(writer, 106, value.column)
+        RowComponent.ADAPTER.encodeWithTag(writer, 105, value.row)
+        ModalDrawerComponent.ADAPTER.encodeWithTag(writer, 104, value.modalDrawer)
+        BottomBarComponent.ADAPTER.encodeWithTag(writer, 103, value.bottomBar)
+        TopBarComponent.ADAPTER.encodeWithTag(writer, 102, value.topBar)
+        ScreenComponent.ADAPTER.encodeWithTag(writer, 101, value.screen)
+        NavGraphComponent.ADAPTER.encodeWithTag(writer, 100, value.navGraph)
+        ActionSheetComponent.ADAPTER.encodeWithTag(writer, 23, value.actionSheet)
+        AlertComponent.ADAPTER.encodeWithTag(writer, 22, value.alert)
+        BottomBarItemComponent.ADAPTER.encodeWithTag(writer, 21, value.bottomBarItem)
+        IconComponent.ADAPTER.encodeWithTag(writer, 20, value.icon)
+        PickerComponent.ADAPTER.encodeWithTag(writer, 19, value.picker)
+        RadioButtonComponent.ADAPTER.encodeWithTag(writer, 18, value.radioButton)
+        CheckBoxComponent.ADAPTER.encodeWithTag(writer, 17, value.checkbox)
+        ToggleComponent.ADAPTER.encodeWithTag(writer, 16, value.toggle)
+        SliderComponent.ADAPTER.encodeWithTag(writer, 15, value.slider)
+        TextEditorComponent.ADAPTER.encodeWithTag(writer, 14, value.textEditor)
+        TextFieldComponent.ADAPTER.encodeWithTag(writer, 13, value.textField)
+        ImageComponent.ADAPTER.encodeWithTag(writer, 12, value.image)
+        TextComponent.ADAPTER.encodeWithTag(writer, 11, value.label)
+        ButtonComponent.ADAPTER.encodeWithTag(writer, 10, value.button)
+        Interaction.ADAPTER.asRepeated().encodeWithTag(writer, 3, value.interactions)
+        Modifier.ADAPTER.encodeWithTag(writer, 2, value.modifier)
         if (value.id != "") ProtoAdapter.STRING.encodeWithTag(writer, 1, value.id)
       }
 
       public override fun decode(reader: ProtoReader): Particle {
         var id: String = ""
-        var element: ElementComponent? = null
-        var layout: LayoutComponent? = null
         var modifier: Modifier? = null
         val interactions = mutableListOf<Interaction>()
+        var button: ButtonComponent? = null
+        var label: TextComponent? = null
+        var image: ImageComponent? = null
+        var textField: TextFieldComponent? = null
+        var textEditor: TextEditorComponent? = null
+        var slider: SliderComponent? = null
+        var toggle: ToggleComponent? = null
+        var checkbox: CheckBoxComponent? = null
+        var radioButton: RadioButtonComponent? = null
+        var picker: PickerComponent? = null
+        var icon: IconComponent? = null
+        var bottomBarItem: BottomBarItemComponent? = null
+        var alert: AlertComponent? = null
+        var actionSheet: ActionSheetComponent? = null
+        var navGraph: NavGraphComponent? = null
+        var screen: ScreenComponent? = null
+        var topBar: TopBarComponent? = null
+        var bottomBar: BottomBarComponent? = null
+        var modalDrawer: ModalDrawerComponent? = null
+        var row: RowComponent? = null
+        var column: ColumnComponent? = null
+        var box: BoxComponent? = null
+        var lazyColumn: LazyColumnComponent? = null
+        var lazyRow: LazyRowComponent? = null
+        var tabView: TabViewComponent? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> id = ProtoAdapter.STRING.decode(reader)
-            2 -> element = ElementComponent.ADAPTER.decode(reader)
-            3 -> layout = LayoutComponent.ADAPTER.decode(reader)
-            4 -> modifier = Modifier.ADAPTER.decode(reader)
-            5 -> interactions.add(Interaction.ADAPTER.decode(reader))
+            2 -> modifier = Modifier.ADAPTER.decode(reader)
+            3 -> interactions.add(Interaction.ADAPTER.decode(reader))
+            10 -> button = ButtonComponent.ADAPTER.decode(reader)
+            11 -> label = TextComponent.ADAPTER.decode(reader)
+            12 -> image = ImageComponent.ADAPTER.decode(reader)
+            13 -> textField = TextFieldComponent.ADAPTER.decode(reader)
+            14 -> textEditor = TextEditorComponent.ADAPTER.decode(reader)
+            15 -> slider = SliderComponent.ADAPTER.decode(reader)
+            16 -> toggle = ToggleComponent.ADAPTER.decode(reader)
+            17 -> checkbox = CheckBoxComponent.ADAPTER.decode(reader)
+            18 -> radioButton = RadioButtonComponent.ADAPTER.decode(reader)
+            19 -> picker = PickerComponent.ADAPTER.decode(reader)
+            20 -> try {
+              icon = IconComponent.ADAPTER.decode(reader)
+            } catch (e: ProtoAdapter.EnumConstantNotFoundException) {
+              reader.addUnknownField(tag, FieldEncoding.VARINT, e.value.toLong())
+            }
+            21 -> bottomBarItem = BottomBarItemComponent.ADAPTER.decode(reader)
+            22 -> alert = AlertComponent.ADAPTER.decode(reader)
+            23 -> actionSheet = ActionSheetComponent.ADAPTER.decode(reader)
+            100 -> navGraph = NavGraphComponent.ADAPTER.decode(reader)
+            101 -> screen = ScreenComponent.ADAPTER.decode(reader)
+            102 -> topBar = TopBarComponent.ADAPTER.decode(reader)
+            103 -> bottomBar = BottomBarComponent.ADAPTER.decode(reader)
+            104 -> modalDrawer = ModalDrawerComponent.ADAPTER.decode(reader)
+            105 -> row = RowComponent.ADAPTER.decode(reader)
+            106 -> column = ColumnComponent.ADAPTER.decode(reader)
+            107 -> box = BoxComponent.ADAPTER.decode(reader)
+            108 -> lazyColumn = LazyColumnComponent.ADAPTER.decode(reader)
+            109 -> lazyRow = LazyRowComponent.ADAPTER.decode(reader)
+            110 -> tabView = TabViewComponent.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
         return Particle(
           id = id,
-          element = element,
-          layout = layout,
           modifier = modifier,
           interactions = interactions,
+          button = button,
+          label = label,
+          image = image,
+          textField = textField,
+          textEditor = textEditor,
+          slider = slider,
+          toggle = toggle,
+          checkbox = checkbox,
+          radioButton = radioButton,
+          picker = picker,
+          icon = icon,
+          bottomBarItem = bottomBarItem,
+          alert = alert,
+          actionSheet = actionSheet,
+          navGraph = navGraph,
+          screen = screen,
+          topBar = topBar,
+          bottomBar = bottomBar,
+          modalDrawer = modalDrawer,
+          row = row,
+          column = column,
+          box = box,
+          lazyColumn = lazyColumn,
+          lazyRow = lazyRow,
+          tabView = tabView,
           unknownFields = unknownFields
         )
       }
 
       public override fun redact(`value`: Particle): Particle = value.copy(
-        element = value.element?.let(ElementComponent.ADAPTER::redact),
-        layout = value.layout?.let(LayoutComponent.ADAPTER::redact),
         modifier = value.modifier?.let(Modifier.ADAPTER::redact),
         interactions = value.interactions.redactElements(Interaction.ADAPTER),
+        button = value.button?.let(ButtonComponent.ADAPTER::redact),
+        label = value.label?.let(TextComponent.ADAPTER::redact),
+        image = value.image?.let(ImageComponent.ADAPTER::redact),
+        textField = value.textField?.let(TextFieldComponent.ADAPTER::redact),
+        textEditor = value.textEditor?.let(TextEditorComponent.ADAPTER::redact),
+        slider = value.slider?.let(SliderComponent.ADAPTER::redact),
+        toggle = value.toggle?.let(ToggleComponent.ADAPTER::redact),
+        checkbox = value.checkbox?.let(CheckBoxComponent.ADAPTER::redact),
+        radioButton = value.radioButton?.let(RadioButtonComponent.ADAPTER::redact),
+        picker = value.picker?.let(PickerComponent.ADAPTER::redact),
+        bottomBarItem = value.bottomBarItem?.let(BottomBarItemComponent.ADAPTER::redact),
+        alert = value.alert?.let(AlertComponent.ADAPTER::redact),
+        actionSheet = value.actionSheet?.let(ActionSheetComponent.ADAPTER::redact),
+        navGraph = value.navGraph?.let(NavGraphComponent.ADAPTER::redact),
+        screen = value.screen?.let(ScreenComponent.ADAPTER::redact),
+        topBar = value.topBar?.let(TopBarComponent.ADAPTER::redact),
+        bottomBar = value.bottomBar?.let(BottomBarComponent.ADAPTER::redact),
+        modalDrawer = value.modalDrawer?.let(ModalDrawerComponent.ADAPTER::redact),
+        row = value.row?.let(RowComponent.ADAPTER::redact),
+        column = value.column?.let(ColumnComponent.ADAPTER::redact),
+        box = value.box?.let(BoxComponent.ADAPTER::redact),
+        lazyColumn = value.lazyColumn?.let(LazyColumnComponent.ADAPTER::redact),
+        lazyRow = value.lazyRow?.let(LazyRowComponent.ADAPTER::redact),
+        tabView = value.tabView?.let(TabViewComponent.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }

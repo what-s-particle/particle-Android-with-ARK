@@ -26,7 +26,7 @@ abstract class ParticleActivity : ComponentActivity() {
 
         setContent {
             val content by viewModel.content.collectAsState()
-            content?.layout?.navGraph?.let {
+            content?.navGraph?.let {
                 ParticleNavGraph(navGraph = it, viewModel = viewModel)
             }
         }
