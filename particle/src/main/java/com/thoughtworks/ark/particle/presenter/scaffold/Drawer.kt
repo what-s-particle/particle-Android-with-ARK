@@ -3,6 +3,7 @@ package com.thoughtworks.ark.particle.presenter.scaffold
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.DrawerState
 import androidx.compose.material.ModalDrawer
@@ -30,6 +31,7 @@ fun ParticleModalDrawer(
                 modifier = Modifier
                     .background(Color.Blue)
                     .fillMaxHeight()
+                    .fillMaxWidth()
             ) {
                 Button(onClick = { contract.onAction(Action.NavigateTo("screen2")) }) {
                     Text(text = "drawerContent")
