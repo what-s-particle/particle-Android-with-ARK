@@ -1,8 +1,6 @@
 package com.thoughtworks.ark.core.network.client
 
 import android.content.Context
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -14,7 +12,7 @@ class ApiEndPoints(private val context: Context, private val networkJson: Json) 
     fun <S> createService(clazz: Class<S>, baseUrl: String): S =
         createService(clazz, baseUrl, HttpClient(context))
 
-    fun <T : HttpClient, S> createService(
+    private fun <T : HttpClient, S> createService(
         clazz: Class<S>,
         baseUrl: String,
         httpClient: T,
@@ -23,16 +21,12 @@ class ApiEndPoints(private val context: Context, private val networkJson: Json) 
         return retrofit.create(clazz)
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     private fun createRetrofit(baseUrl: String, client: OkHttpClient) =
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
+                // TODO 需要自定义Factory，同时支持解析pb 和 json
             .addConverterFactory(WireConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-
-    companion object {
-        private val jsonContentType = "application/json".toMediaType()
-    }
 }

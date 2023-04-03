@@ -13,7 +13,7 @@ interface ParticleClient {
     suspend fun getActions(): Response<List<Action>>
 
     @Headers("Accept: application/x-protobuf")
-    @GET("/moments")
+    @GET("/showcase")
     suspend fun init(): Response<Particle>
 
     companion object {

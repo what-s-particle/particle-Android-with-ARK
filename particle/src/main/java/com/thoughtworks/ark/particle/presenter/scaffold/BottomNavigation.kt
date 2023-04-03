@@ -17,17 +17,20 @@ fun ParticleBottomNavigation(
     navController: NavHostController,
     contract: ParticleContract
 ) {
-    BottomNavigation {
-        particle?.bottomBar?.elements?.forEach { item ->
-            BottomNavigationItem(
-                selected = item.bottomBarItem?.selected ?: false,
-                onClick = {
-                    item.interactions.dispatcher(Event.TAP_EVENT)
-                },
-                icon = { item.bottomBarItem?.icon?.Dispatcher(navController, contract) },
-                label = { item.bottomBarItem?.text?.Dispatcher(navController, contract) },
-                modifier = item.modifier?.Dispatcher() ?: Modifier
-            )
+    val elements = particle?.bottomBar?.elements
+    elements?.let {
+        BottomNavigation {
+            it.forEach { item ->
+                BottomNavigationItem(
+                    selected = item.bottomBarItem?.selected ?: false,
+                    onClick = {
+                        item.interactions.dispatcher(Event.TAP_EVENT)
+                    },
+                    icon = { item.bottomBarItem?.icon?.Dispatcher(navController, contract) },
+                    label = { item.bottomBarItem?.text?.Dispatcher(navController, contract) },
+                    modifier = item.modifier?.Dispatcher() ?: Modifier
+                )
+            }
         }
     }
 }
