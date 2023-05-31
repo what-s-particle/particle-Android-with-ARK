@@ -33,7 +33,10 @@ fun ParticleModalDrawer(
                     .fillMaxHeight()
                     .fillMaxWidth()
             ) {
-                Button(onClick = { contract.onAction(Action.NavigateTo("screen2")) }) {
+                Button(onClick = {
+                    contract.onAction(Action.HideDrawer)
+                    contract.onAction(Action.NavigateTo("screen2"))
+                }) {
                     Text(text = "drawerContent")
                 }
             }

@@ -1,17 +1,20 @@
 package com.thoughtworks.ark.particle.presenter.dispatch
 
+import com.thoughtworks.ark.particle.presenter.dispatch.extension.dispatch
+import com.thoughtworks.ark.particle.presenter.model.ParticleContract
 import com.yunlong.particle.proto.Action
-import com.yunlong.particle.proto.Event
-import com.yunlong.particle.proto.Interaction
+import com.yunlong.particle.proto.Particle
 
-fun List<Interaction>.dispatcher(event: Event) = filter {
-    it.event.contains(event)
-}.forEach { interaction ->
-    interaction.action.forEach { action ->
-        action.dispatcher()
+
+fun List<Action>.dispatch(content: Particle, contract: ParticleContract): Particle {
+    forEach { action ->
+        action.dispatch(content, contract)
     }
+    return content.copy()
 }
 
-fun Action.dispatcher() {
-
+private fun Action.dispatch(content: Particle, contract: ParticleContract) {
+    when {
+        navItemSelected != null -> navItemSelected.dispatch(content, contract)
+    }
 }

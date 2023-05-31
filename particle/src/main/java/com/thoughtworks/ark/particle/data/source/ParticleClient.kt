@@ -9,14 +9,14 @@ import retrofit2.http.Headers
 
 interface ParticleClient {
     @Headers("Accept: application/x-protobuf")
-    @GET("/actions")
+    @GET("actions")
     suspend fun getActions(): Response<List<Action>>
 
     @Headers("Accept: application/x-protobuf")
-    @GET("/showcase")
+    @GET("showcase")
     suspend fun init(): Response<Particle>
 
     companion object {
-        const val baseUrl = "http://10.0.2.2:8000"
+        const val baseUrl = "http://particle.100kwhy.cn/"
     }
 }

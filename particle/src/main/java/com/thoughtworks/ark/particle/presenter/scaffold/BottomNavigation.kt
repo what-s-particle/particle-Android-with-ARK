@@ -6,9 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.thoughtworks.ark.particle.presenter.dispatch.Dispatcher
-import com.thoughtworks.ark.particle.presenter.dispatch.dispatcher
+import com.thoughtworks.ark.particle.presenter.model.Event.OnParticleEvent
 import com.thoughtworks.ark.particle.presenter.model.ParticleContract
-import com.yunlong.particle.proto.Event
 import com.yunlong.particle.proto.Particle
 
 @Composable
@@ -22,13 +21,16 @@ fun ParticleBottomNavigation(
         BottomNavigation {
             it.forEach { item ->
                 BottomNavigationItem(
-                    selected = item.bottomBarItem?.selected ?: false,
+                    selected = item.id == particle.bottomBar.selectedElement,
                     onClick = {
-                        item.interactions.dispatcher(Event.TAP_EVENT)
+                        item.interactions.forEach { interaction ->
+                            contract.onEvent(OnParticleEvent(interaction.action))
+                        }
+
                     },
                     icon = { item.bottomBarItem?.icon?.Dispatcher(navController, contract) },
                     label = { item.bottomBarItem?.text?.Dispatcher(navController, contract) },
-                    modifier = item.modifier?.Dispatcher() ?: Modifier
+                    modifier = item.modifier?.Dispatcher(contract.onEvent) ?: Modifier
                 )
             }
         }

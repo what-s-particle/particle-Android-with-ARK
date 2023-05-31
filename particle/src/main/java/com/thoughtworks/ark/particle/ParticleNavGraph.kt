@@ -59,9 +59,13 @@ fun ParticleNavGraph(
     }
 
     val action by viewModel.action.collectAsState()
+
     when (action) {
         is Action.OpenDrawer -> coroutineScope.launch {
             drawerState.open()
+        }
+        is Action.HideDrawer -> coroutineScope.launch {
+            drawerState.close()
         }
         is Action.NavigateTo -> navController.navigate((action as Action.NavigateTo).route)
         is Action.NavigateUp -> navController.navigateUp()

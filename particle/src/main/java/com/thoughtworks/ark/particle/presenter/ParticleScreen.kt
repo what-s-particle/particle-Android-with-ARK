@@ -20,7 +20,7 @@ fun ParticleScreen(
 ) {
     particle.screen?.let { screen ->
         Scaffold(
-            modifier = particle.modifier?.Dispatcher() ?: Modifier,
+            modifier = particle.modifier?.Dispatcher(contract.onEvent) ?: Modifier,
             topBar = { ParticleTopAppBar(screen.topBar, navController, contract) },
             bottomBar = { ParticleBottomNavigation(screen.bottomBar, navController, contract) }
 

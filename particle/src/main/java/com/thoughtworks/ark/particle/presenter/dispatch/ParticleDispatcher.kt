@@ -8,9 +8,11 @@ import com.yunlong.particle.proto.Particle
 
 @Composable
 fun Particle.Dispatcher(navController: NavHostController, contract: ParticleContract) {
+    val modifier = this.modifier?.Dispatcher(interactions, contract.onEvent)
+
     when {
         label != null -> {
-            TextViewComponent(label, this.modifier?.Dispatcher())
+            TextViewComponent(label, modifier)
         }
     }
 }

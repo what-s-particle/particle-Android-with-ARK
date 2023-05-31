@@ -11,9 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
 import com.thoughtworks.ark.particle.presenter.dispatch.Dispatcher
-import com.thoughtworks.ark.particle.presenter.dispatch.dispatcher
+import com.thoughtworks.ark.particle.presenter.model.Action
 import com.thoughtworks.ark.particle.presenter.model.ParticleContract
-import com.yunlong.particle.proto.Event
 import com.yunlong.particle.proto.Particle
 
 @Composable
@@ -26,10 +25,9 @@ fun ParticleTopAppBar(
         TopAppBar(
             title = { topBar.title?.Dispatcher(navController, contract) },
             navigationIcon = {
-                topBar.navigationIcon?.let { navIcon ->
+                topBar.navigationIcon?.let {
                     IconButton(onClick = {
-                        navController.navigateUp()
-                        navIcon.interactions.dispatcher(Event.TAP_EVENT)
+                        contract.onAction(Action.NavigateUp)
                     }) {
                         // TODO: should define a icon in proto
                         // TODO: should define accessibility
@@ -45,7 +43,7 @@ fun ParticleTopAppBar(
                     )
                 }
             },
-            modifier = particle.modifier?.Dispatcher()
+            modifier = particle.modifier?.Dispatcher(contract.onEvent)
                 ?: Modifier.fillMaxWidth(),
             elevation = Dp(topBar.elevation.toFloat())
         )

@@ -127,12 +127,19 @@ public class Action(
     oneofName = "action",
   )
   public val retrieveData: RetrieveDataAction? = null,
+  @field:WireField(
+    tag = 12,
+    adapter = "com.yunlong.particle.proto.NavItemSelectedAction#ADAPTER",
+    oneofName = "action",
+  )
+  public val navItemSelected: NavItemSelectedAction? = null,
   unknownFields: ByteString = ByteString.EMPTY,
 ) : AndroidMessage<Action, Nothing>(ADAPTER, unknownFields) {
   init {
     require(countNonNull(custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier,
-        storeData, sendHttpRequest, openExternalApp, condition, retrieveData) <= 1) {
-      "At most one of custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier, storeData, sendHttpRequest, openExternalApp, condition, retrieveData may be non-null"
+        storeData, sendHttpRequest, openExternalApp, condition, retrieveData,
+        navItemSelected) <= 1) {
+      "At most one of custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier, storeData, sendHttpRequest, openExternalApp, condition, retrieveData, navItemSelected may be non-null"
     }
   }
 
@@ -158,6 +165,7 @@ public class Action(
     if (openExternalApp != other.openExternalApp) return false
     if (condition != other.condition) return false
     if (retrieveData != other.retrieveData) return false
+    if (navItemSelected != other.navItemSelected) return false
     return true
   }
 
@@ -176,6 +184,7 @@ public class Action(
       result = result * 37 + (openExternalApp?.hashCode() ?: 0)
       result = result * 37 + (condition?.hashCode() ?: 0)
       result = result * 37 + (retrieveData?.hashCode() ?: 0)
+      result = result * 37 + (navItemSelected?.hashCode() ?: 0)
       super.hashCode = result
     }
     return result
@@ -194,6 +203,7 @@ public class Action(
     if (openExternalApp != null) result += """openExternalApp=$openExternalApp"""
     if (condition != null) result += """condition=$condition"""
     if (retrieveData != null) result += """retrieveData=$retrieveData"""
+    if (navItemSelected != null) result += """navItemSelected=$navItemSelected"""
     return result.joinToString(prefix = "Action{", separator = ", ", postfix = "}")
   }
 
@@ -209,9 +219,11 @@ public class Action(
     openExternalApp: OpenExternalAppAction? = this.openExternalApp,
     condition: ConditionAction? = this.condition,
     retrieveData: RetrieveDataAction? = this.retrieveData,
+    navItemSelected: NavItemSelectedAction? = this.navItemSelected,
     unknownFields: ByteString = this.unknownFields,
   ): Action = Action(custom, navigateTo, navigateBack, showDialog, showMenu, updateModifier,
-      storeData, sendHttpRequest, openExternalApp, condition, retrieveData, unknownFields)
+      storeData, sendHttpRequest, openExternalApp, condition, retrieveData, navItemSelected,
+      unknownFields)
 
   public companion object {
     @JvmField
@@ -236,6 +248,7 @@ public class Action(
         size += OpenExternalAppAction.ADAPTER.encodedSizeWithTag(9, value.openExternalApp)
         size += ConditionAction.ADAPTER.encodedSizeWithTag(10, value.condition)
         size += RetrieveDataAction.ADAPTER.encodedSizeWithTag(11, value.retrieveData)
+        size += NavItemSelectedAction.ADAPTER.encodedSizeWithTag(12, value.navItemSelected)
         return size
       }
 
@@ -251,11 +264,13 @@ public class Action(
         OpenExternalAppAction.ADAPTER.encodeWithTag(writer, 9, value.openExternalApp)
         ConditionAction.ADAPTER.encodeWithTag(writer, 10, value.condition)
         RetrieveDataAction.ADAPTER.encodeWithTag(writer, 11, value.retrieveData)
+        NavItemSelectedAction.ADAPTER.encodeWithTag(writer, 12, value.navItemSelected)
         writer.writeBytes(value.unknownFields)
       }
 
       public override fun encode(writer: ReverseProtoWriter, `value`: Action): Unit {
         writer.writeBytes(value.unknownFields)
+        NavItemSelectedAction.ADAPTER.encodeWithTag(writer, 12, value.navItemSelected)
         RetrieveDataAction.ADAPTER.encodeWithTag(writer, 11, value.retrieveData)
         ConditionAction.ADAPTER.encodeWithTag(writer, 10, value.condition)
         OpenExternalAppAction.ADAPTER.encodeWithTag(writer, 9, value.openExternalApp)
@@ -281,6 +296,7 @@ public class Action(
         var openExternalApp: OpenExternalAppAction? = null
         var condition: ConditionAction? = null
         var retrieveData: RetrieveDataAction? = null
+        var navItemSelected: NavItemSelectedAction? = null
         val unknownFields = reader.forEachTag { tag ->
           when (tag) {
             1 -> custom = CustomAction.ADAPTER.decode(reader)
@@ -294,6 +310,7 @@ public class Action(
             9 -> openExternalApp = OpenExternalAppAction.ADAPTER.decode(reader)
             10 -> condition = ConditionAction.ADAPTER.decode(reader)
             11 -> retrieveData = RetrieveDataAction.ADAPTER.decode(reader)
+            12 -> navItemSelected = NavItemSelectedAction.ADAPTER.decode(reader)
             else -> reader.readUnknownField(tag)
           }
         }
@@ -309,6 +326,7 @@ public class Action(
           openExternalApp = openExternalApp,
           condition = condition,
           retrieveData = retrieveData,
+          navItemSelected = navItemSelected,
           unknownFields = unknownFields
         )
       }
@@ -325,6 +343,7 @@ public class Action(
         openExternalApp = value.openExternalApp?.let(OpenExternalAppAction.ADAPTER::redact),
         condition = value.condition?.let(ConditionAction.ADAPTER::redact),
         retrieveData = value.retrieveData?.let(RetrieveDataAction.ADAPTER::redact),
+        navItemSelected = value.navItemSelected?.let(NavItemSelectedAction.ADAPTER::redact),
         unknownFields = ByteString.EMPTY
       )
     }
